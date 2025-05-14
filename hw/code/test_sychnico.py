@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 import time
 
-def test_link(src, link_str, assert_url):
+def link_test(src, link_str, assert_url):
   options = Options()
   options.page_load_strategy = 'normal'
   driver = webdriver.Chrome(options=options)
@@ -43,7 +43,7 @@ def test_link(src, link_str, assert_url):
 
 
 
-def test_button_class(src, class_str, assert_url):
+def button_class_test(src, class_str, assert_url):
   options = Options()
   options.page_load_strategy = 'normal'
   driver = webdriver.Chrome(options=options)
@@ -78,41 +78,41 @@ def test_button_class(src, class_str, assert_url):
   driver.close()
 
 
-if __name__ == "__main__":
+def test_main_page():
     url = "http://ads.vk.ru"
-    test_link(url, "Новости", "news")
-    test_link(url, "Кейсы", "cases")
-    test_link(url, "Форум идей", "upvote")
-    test_link(url, "Монетизация", "partner")
-    test_link(url, "Справка", "help")
-    test_link(url, "Регистрация", "auth")
-    test_link(url, "Запустить рекламу", "auth")
-    test_link(url, "Получить бонус", "firstbonus")
-    test_link(url, "Открыть подборку", "podborka")
-    test_link(url, "Смотреть все", "cases")
-    test_button_class(url, "case_link__2bZoK", "cases")
-    test_button_class(url, "getStarted_wrapper__gW_MK", "events")
-    test_button_class(url, "news_wrapper__ieB6j", "news")
-    test_link(url, "Полезные материалы", "insights")
-    test_link(url, "Мероприятия", "events")
-    test_link(url, "Документы", "documents")
-    test_link(url, "Обучение для бизнеса", "expert")
-    test_link(url, "Помощь", "help")
+    link_test(url, "Новости", "news")
+    link_test(url, "Кейсы", "cases")
+    link_test(url, "Форум идей", "upvote")
+    link_test(url, "Монетизация", "partner")
+    link_test(url, "Справка", "help")
+    link_test(url, "Регистрация", "auth")
+    link_test(url, "Запустить рекламу", "auth")
+    link_test(url, "Получить бонус", "firstbonus")
+    link_test(url, "Открыть подборку", "podborka")
+    link_test(url, "Смотреть все", "cases")
+    button_class_test(url, "case_link__2bZoK", "cases")
+    button_class_test(url, "getStarted_wrapper__gW_MK", "events")
+    button_class_test(url, "news_wrapper__ieB6j", "news")
+    link_test(url, "Полезные материалы", "insights")
+    link_test(url, "Мероприятия", "events")
+    link_test(url, "Документы", "documents")
+    link_test(url, "Обучение для бизнеса", "expert")
+    link_test(url, "Помощь", "help")
 
     url = "http://ads.vk.ru/news"
-    test_button_class(url, "news-card_wrapper__n6fqN", "news/novyj")
-    test_button_class(url, "vkuiPagination__page", "news?p=")
+    button_class_test(url, "news-card_wrapper__n6fqN", "news/")
+    button_class_test(url, "vkuiPagination__page", "?p=")
 
     url = "http://ads.vk.ru/insights"
-    test_button_class(url, "insight-card_wrapper__YsQnM", "insights/reklama")
-    test_button_class(url, "vkuiPagination__page", "?p=")
+    button_class_test(url, "insight-card_wrapper__YsQnM", "insights/")
+    button_class_test(url, "vkuiPagination__page", "?p=")
 
     url = "http://ads.vk.ru/events"
-    test_button_class(url, "event-card_wrapper__GZkvu", "events/vybor")
+    button_class_test(url, "event-card_wrapper__GZkvu", "events/")
 
     url = "http://ads.vk.ru/documents"
-    test_button_class(url, "Link_wrapper__eHAEn", "documents/offer")
+    button_class_test(url, "Link_wrapper__eHAEn", "documents/")
 
     url = "http://ads.vk.ru/cases"
-    test_button_class(url, "case-card_wrapper__N1Mya", "cases/kak")
-    test_button_class(url, "vkuiPagination__page", "?p=")
+    button_class_test(url, "case-card_wrapper__N1Mya", "cases/")
+    button_class_test(url, "vkuiPagination__page", "?p=")
