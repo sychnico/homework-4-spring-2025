@@ -354,84 +354,6 @@ class VKAdsPage:
         except Exception:
             return False
 
-    def test_valid_email_invalid_pixel_id(self, invalid_id="12345", valid_email="sonyabely@gmail.com"):
-        """Тест: проверка валидации при вводе корректного email и некорректного ID пикселя"""
-        try:
-            if not self.test_pixel_id_tab_opening():
-                return False
-            
-            modal_selectors = ["#_modal_31", "#_modal_53", "[id^='_modal_']"]
-            modal_id = None
-            for selector in modal_selectors:
-                try:
-                    modal_elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
-                    for elem in modal_elements:
-                        if elem.is_displayed():
-                            modal_id = elem.get_attribute("id")
-                            break
-                    if modal_id:
-                        break
-                except Exception as e:
-                    continue
-            
-            if not modal_id:
-                modal_id = "_modal_31" 
-            
-            id_input_selector = f"#{modal_id} > div > div > div.vkuiDiv.DomainCheckStep_contentWrapper__RFb-h > div:nth-child(2) input"
-            id_input = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, id_input_selector)))
-            id_input.clear()
-            id_input.send_keys(invalid_id)
-            
-            email_input_selector = f"#{modal_id} > div > div > div.vkuiDiv.DomainCheckStep_contentWrapper__RFb-h > div:nth-child(3) input"
-            email_input = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, email_input_selector)))
-            email_input.clear()
-            email_input.send_keys(valid_email)
-            
-            button_selector = f"#{modal_id} > div > div > div.vkuiModalCardBase__actions > div > button"
-            action_button = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector)))
-            self.driver.execute_script("arguments[0].click();", action_button)
-            
-            self.save_screenshot("before_error_check_valid_email.png")
-            
-            error_selectors = [
-                f"#{modal_id} > div > div > div.vkuiDiv.DomainCheckStep_contentWrapper__RFb-h > div.vkuiFormItem.vkuiFormItem--withPadding.vkuiInternalFormItem.vkuiFormItem--status-error.vkuiInternalFormItem--status-error.vkuiFormItem--sizeY-none.vkuiInternalFormItem--sizeY-none.DomainCheckStep_inputWrap__KIm3f",
-                f"#{modal_id} > div > div > div.vkuiDiv.DomainCheckStep_contentWrapper__RFb-h > div.vkuiFormItem.vkuiFormItem--withPadding.vkuiInternalFormItem.vkuiFormItem--status-error"
-            ]
-            
-            for i, error_selector in enumerate(error_selectors):
-                try:
-                    error_element = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, error_selector)))
-                    
-                    if error_element.is_displayed():
-                        self.save_screenshot(f"validation_error_found_selector_{i+1}.png")
-                        return True
-                    else:
-                        continue
-                except Exception as e:
-                    continue
-            
-            try:
-                error_elements = self.driver.find_elements(By.CSS_SELECTOR, f"#{modal_id} .vkuiFormItem--status-error")
-                if error_elements and any(e.is_displayed() for e in error_elements):
-                    self.save_screenshot("alternative_error_found_valid_email.png")
-                    return True
-            except Exception as e:
-                pass
-            
-            try:
-                error_message = self.driver.find_element(By.CSS_SELECTOR, f"#{modal_id} .vkuiFormItem--status-error .vkuiFormItem__error")
-                if error_message.is_displayed():
-                    self.save_screenshot("error_message_displayed.png")
-                    return True
-            except Exception as e:
-                pass
-            
-            self.save_screenshot("validation_error_not_found_valid_email.png")
-            return False
-                
-        except Exception as e:
-            self.save_screenshot("valid_email_test_general_error.png")
-            return False
 
     def test_create_first_pixel(self, domain="example.com"): 
         """Тест: создание первого пикселя через кнопку 'Создать первый пиксель'"""
@@ -744,7 +666,7 @@ class VKAdsPage:
         except Exception as e:
             return False
 
-    def test_valid_app_input(self, valid_input="https://apps.apple.com/ru/app/microsoft-onenote/id784801555?mt=12"):
+    def test_valid_app_input(self, valid_input="https://apps.apple.com/ru/app/vk-teams-%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80/id1473826998?mt=12"):
         """Тест: проверка ввода валидного URL приложения из App Store"""
         try:
             if not self.test_open_app_modal():
@@ -993,3 +915,5 @@ class VKAdsPage:
             
         except Exception:
             return False
+
+

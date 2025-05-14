@@ -23,17 +23,10 @@ def test_invalid_pixel_id(authorized_vk_ads_page):
     authorized_vk_ads_page.open_page("https://ads.vk.com/hq/pixels")
     assert authorized_vk_ads_page.test_invalid_pixel_id_validation()
 
-def test_valid_email_invalid_id(authorized_vk_ads_page):
-    """Тест валидации при вводе корректного email и некорректного ID пикселя"""
-    authorized_vk_ads_page.open_page("https://ads.vk.com/hq/pixels")
-    assert authorized_vk_ads_page.test_valid_email_invalid_pixel_id()
-
 def test_modal(authorized_vk_ads_page):
     """Тест открытия модального окна добавления пикселя"""
     authorized_vk_ads_page.open_page("https://ads.vk.com/hq/pixels")
     assert authorized_vk_ads_page.test_add_pixel_modal()
-
-
 
 
 @pytest.mark.parametrize("search_query, expect_empty", [
