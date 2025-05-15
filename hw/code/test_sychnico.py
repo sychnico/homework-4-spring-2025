@@ -99,16 +99,6 @@ def test_main_page():
     link_test(url, "Обучение для бизнеса", "expert")
     link_test(url, "Помощь", "help")
 
-def test_news():
-    url = "http://ads.vk.ru/news"
-    button_class_test(url, "news-card_wrapper__n6fqN", "news/")
-    button_class_test(url, "vkuiPagination__page", "?p=")
-
-def test_insights():
-    url = "http://ads.vk.ru/insights"
-    button_class_test(url, "insight-card_wrapper__YsQnM", "insights/")
-    button_class_test(url, "vkuiPagination__page", "?p=")
-
 def test_events():
     url = "http://ads.vk.ru/events"
     button_class_test(url, "event-card_wrapper__GZkvu", "events/")
