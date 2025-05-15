@@ -121,9 +121,6 @@ class VKAdsPage:
                 By.CSS_SELECTOR, "#root > div > div:nth-child(2) > div:nth-child(2) > div.ModalRoot_componentWrapper__uzHTL > div > div.ModalSidebarPage_contentWithoutHeader__cVnVe > div > div.ModalSidebarPage_content__2mBu8 > section > div:nth-child(2)"
             )))
 
-            ##self.wait.until(EC.visibility_of_element_located((
-            ##    By.XPATH, "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div/div[2]/div/div[1]/section/div/div"
-            ##)))
             return True
         except TimeoutException:
             return False

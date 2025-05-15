@@ -80,12 +80,10 @@ class TanevVKAdsPage:
 
     def bonus_inc_balance(self):
         try:
-            # Нажать кнопку
             self.wait.until(EC.element_to_be_clickable((
                 By.CSS_SELECTOR,
                 "#budget\\.transactions > div > div.tableLayout_wrapper__r84CH > div.tableLayout_table__weM5E > div > div > div.vkuiPlaceholder__action > button"
             ))).click()
-            # Ждать появления модального окна и получить его текст
             modal = self.wait.until(EC.visibility_of_element_located((
                 By.CSS_SELECTOR,
                 "#_modal_18 > div > div > div.vkuiModalPage__content-wrap > div.vkuiModalPage__content > div > div > form > section"
@@ -116,74 +114,3 @@ class TanevVKAdsPage:
             return True
         except TimeoutException:
             return False
-
-    def open_comm_page_and_start_education(self):
-        try:
-            # Попытка закрыть мешающую модалку, если она появилась
-            try:
-                from selenium.webdriver.support.wait import WebDriverWait
-                WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((
-                    By.CSS_SELECTOR,
-                    " #_modal_36 > div > div > div.vkuiModalDismissButton.vkuiTappable.vkuiInternalTappable.vkuiTappable--hasHover.vkuiTappable--hasActive.vkui-focus-visible"  # предполагаемый селектор для мешающей модалки
-                ))).click()
-            except TimeoutException:
-                pass
-            # Нажимаем на кнопку открытия обучения
-            self.wait.until(EC.element_to_be_clickable((
-                By.CSS_SELECTOR,
-                "#catalogs > div > div > section > div > div > div.CatalogsPlaceholder_placeHolderWrapper__\+Ycn8 > div > div.vkuiButtonGroup.vkuiButtonGroup--mode-horizontal.vkuiButtonGroup--gap-m.vkuiButtonGroup--align-left > button.vkuiButton.vkuiButton--size-l.vkuiButton--mode-secondary.vkuiButton--appearance-accent.vkuiButton--align-center.vkuiButton--sizeY-regular.vkuiButton--with-icon.vkuiTappable.vkuiInternalTappable.vkuiTappable--sizeX-none.vkuiTappable--hasHover.vkuiTappable--hasActive.vkui-focus-visible"
-            ))).click()
-            # Ждем появления модального окна обучения
-            modal = self.wait.until(EC.visibility_of_element_located((
-                By.ID, "_modal_30"
-            )))
-            # Проверяем наличие требуемых текстов
-            modal_text = modal.text
-            required_texts = [
-                "Создать каталог с подсказками",
-                "Пошаговое обучение, ~15 минут",
-                "Смотреть видеоурок от экспертов VK",
-                "Видео, 7 минут",
-                "Смотреть курс на обучающей платформе",
-                "Полезные видео и статьи"
-            ]
-            for text in required_texts:
-                if text not in modal_text:
-                    raise TimeoutException(f"Missing text: {text}")
-            # Закрываем модальное окно по крестику
-            self.wait.until(EC.element_to_be_clickable((
-                By.CSS_SELECTOR,
-                "#_modal_86 > div > div > div.vkuiModalDismissButton.vkuiTappable.vkuiInternalTappable.vkuiTappable--hasHover.vkuiTappable--hasActive.vkui-focus-visible"
-            ))).click()
-            # Ждем, что окно с обучением исчезло
-            self.wait.until_not(EC.visibility_of_element_located((
-                By.ID, "_modal_30"
-            )))
-            return True
-        except TimeoutException:
-            return False
-
-    def create_catalog(self):
-        try:
-            # Click the create catalog button
-            self.wait.until(EC.element_to_be_clickable((
-                By.CSS_SELECTOR,
-                "#catalogs > div > div > section > div > div > div.CatalogsPlaceholder_placeHolderWrapper__\\+Ycn8 > div > div.vkuiButtonGroup.vkuiButtonGroup--mode-horizontal.vkuiButtonGroup--gap-m.vkuiButtonGroup--align-left > button"
-            ))).click()
-            # Wait for the input field in the modal to appear
-            self.wait.until(EC.presence_of_element_located((
-                By.CSS_SELECTOR,
-                "#root > div > div:nth-child(3) > div > div.ModalRoot_componentWrapper__uzHTL > form > div.ModalSidebarPage_contentWithoutHeader__cVnVe > div > div.ModalSidebarPage_content__2mBu8 > section > div:nth-child(1) > span > input"
-            )))
-            # Verify three sections exist in the modal
-            sections = self.driver.find_elements(
-                By.CSS_SELECTOR,
-                "#root > div > div:nth-child(3) > div > div.ModalRoot_componentWrapper__uzHTL > form > div.ModalSidebarPage_contentWithoutHeader__cVnVe > div > div.ModalSidebarPage_content__2mBu8 > section > div:nth-child(2) > div"
-            )
-            if len(sections) < 3:
-                raise TimeoutException("Less than 3 sections found")
-            return True
-        except TimeoutException:
-            return False
-
-

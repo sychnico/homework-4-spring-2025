@@ -355,7 +355,7 @@ class VKAdsPage:
             return False
 
 
-    def test_create_first_pixel(self, domain="example.com"): 
+    def test_create_first_pixel(self, domain="https://zanmsk.ru"): 
         """Тест: создание первого пикселя через кнопку 'Создать первый пиксель'"""
         try:
             try:
@@ -380,7 +380,6 @@ class VKAdsPage:
             second_modal_btn = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#_modal_31 > div > div > div.vkuiModalCardBase__actions")))
             self.driver.execute_script("arguments[0].click();", second_modal_btn)
 
-            time.sleep(2)  
             return True
         except Exception as e:
             return False
@@ -396,7 +395,6 @@ class VKAdsPage:
             
             self.driver.execute_script("arguments[0].click();", settings_btn)
             
-            time.sleep(2)
             
             return True
         except Exception as e:
@@ -496,8 +494,7 @@ class VKAdsPage:
             audience_tab = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#tab_pixels\\.audience_tags")))
             self.driver.execute_script("arguments[0].click();", audience_tab)
             
-            time.sleep(2)
-       
+
             button_selectors = [
                 "#pixels\\.audience_tags > div > div:nth-child(2) > button",
                 "#pixels\\.audience_tags > div > div:nth-child(3) > button",

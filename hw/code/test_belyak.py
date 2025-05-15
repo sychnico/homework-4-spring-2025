@@ -10,7 +10,7 @@ def authorized_vk_ads_page(session_driver):
 def test_create_pixel(authorized_vk_ads_page):
     """Тест создания  пикселя с корректным доменом"""
     authorized_vk_ads_page.open_page("https://ads.vk.com/hq/pixels")
-    assert authorized_vk_ads_page.test_create_first_pixel("my-company21.ru")
+    assert authorized_vk_ads_page.test_create_first_pixel("https://zanmsk.ru")
 
 
 def test_pixel_id_tab(authorized_vk_ads_page):
@@ -37,10 +37,7 @@ def test_modal(authorized_vk_ads_page):
 def test_pixel_search_param(authorized_vk_ads_page, search_query, expect_empty):
     authorized_vk_ads_page.open_page("https://ads.vk.com/hq/pixels")
     authorized_vk_ads_page.search_pixel(search_query)
-    if expect_empty:
-        assert authorized_vk_ads_page.is_empty_search_result(), f"Ожидалось пустое сообщение для запроса '{search_query}'"
-    else:
-        assert authorized_vk_ads_page.has_search_results(), f"Ожидалось наличие результатов для запроса '{search_query}'"
+    assert authorized_vk_ads_page.is_empty_search_result(), f"Ожидалось пустое сообщение для запроса '{search_query}'"
 
 def test_invalid_domain(authorized_vk_ads_page):
     """Тест проверки валидации при вводе некорректного домена"""

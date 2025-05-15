@@ -20,6 +20,6 @@ def session_driver(chrome_options):
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(TEST_URLS['pixels'])
     import time
-    time.sleep(50)
+    time.sleep(30)
     yield driver
     driver.quit() 
