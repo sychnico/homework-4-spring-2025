@@ -17,7 +17,7 @@ class VKAdsPage:
         ],
     }
 
-    def init(self, driver):
+    def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
@@ -84,3 +84,105 @@ class VKAdsPage:
             return False
         except:
             return False
+
+    def test_open_empty_auditory_page(self):
+        try:
+            self.wait.until(EC.visibility_of_element_located(
+                (By.XPATH, "//*[contains(text(), 'Аудиторий пока нет')]")
+            ))
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='create-audience']")))
+            return True
+        except TimeoutException:
+            return False
+
+    def test_create_audience_modal(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='create-audience']"))).click()
+            self.wait.until(EC.visibility_of_element_located((
+                By.XPATH, "//*[@id=\"root\"]/div/div[2]/div"
+            )))
+            return True
+
+        except TimeoutException:
+            return False
+
+    def test_add_source(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='create-audience']"))).click()
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "#root > div > div:nth-child(2) > div > div.ModalRoot_componentWrapper__uzHTL > form > div.ModalSidebarPage_contentWithoutHeader__cVnVe > div > div.ModalSidebarPage_content__2mBu8 > div > section.vkuiInternalGroup.vkuiGroup.vkuiGroup--mode-plain.vkuiInternalGroup--mode-plain.vkuiGroup--padding-m.CreateSegmentModal_groupContent__FpH1D > div > div > button:nth-child(1)"))).click()
+            self.wait.until(EC.visibility_of_element_located((
+                By.XPATH, "//*[@id=\"root\"]/div/div[2]/div[2]"
+            )))
+            self.wait.until(EC.visibility_of_element_located((
+                By.CSS_SELECTOR, "#root > div > div:nth-child(2) > div:nth-child(2) > div.ModalRoot_componentWrapper__uzHTL > div > div.ModalSidebarPage_contentWithoutHeader__cVnVe > div > div.ModalSidebarPage_content__2mBu8 > section > div:nth-child(2)"
+            )))
+
+            ##self.wait.until(EC.visibility_of_element_located((
+            ##    By.XPATH, "//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div/div[2]/div/div[1]/section/div/div"
+            ##)))
+            return True
+        except TimeoutException:
+            return False
+    def test_user_lists(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.ID, "tab_audience.users_list"))).click()
+            self.wait.until(EC.visibility_of_element_located(
+                (By.XPATH, "//*[contains(text(), 'Списков пользователей пока нет')]")
+            ))
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='download-list']")))
+            return True
+        except TimeoutException:
+            return False
+    def test_offline_conversion(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.ID, "tab_audience.offline_conversion"))).click()
+            self.wait.until(EC.visibility_of_element_located(
+                (By.XPATH, "//*[contains(text(), 'Списков офлайн-конверсий пока нет')]")
+            ))
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='download-list']")))
+            return True
+        except TimeoutException:
+            return False
+
+    def test_modal_lists(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.ID, "tab_audience.users_list"))).click()
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='download-list']"))).click()
+            self.wait.until(EC.visibility_of_element_located((
+                By.XPATH, "//*[@id=\"root\"]/div/div[2]/div"
+            )))
+            return True
+        except TimeoutException:
+            return False
+
+    def test_modal_offline(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable(
+                (By.ID, "tab_audience.offline_conversion"))).click()
+            self.wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "button[data-testid='download-list']"))).click()
+            self.wait.until(EC.visibility_of_element_located((
+                By.XPATH, "//*[@id=\"root\"]/div/div[2]/div"
+            )))
+            return True
+        except TimeoutException:
+            return False
+    def test_overview(self):
+        try:
+            self.wait.until(EC.element_to_be_clickable((
+                By.XPATH, "//*[@id=\"overview\"]/section/div[1]/div[2]/div[1]/button"
+            )))
+            return True
+        except TimeoutException:
+            return False
+
