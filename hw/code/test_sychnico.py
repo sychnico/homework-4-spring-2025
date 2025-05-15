@@ -95,7 +95,6 @@ def test_main_page():
     link_test(url, "Обучение для бизнеса", "expert")
     link_test(url, "Помощь", "help")
 
-
 def test_events():
     url = "http://ads.vk.ru/events"
     button_class_test(url, "event-card_wrapper__GZkvu", "events/")
