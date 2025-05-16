@@ -15,6 +15,10 @@ from ui.pages.news_page import NewsPage
 from ui.pages.overview_page import OverwiewPage
 from ui.pages.pixel_page import PixelPage
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 @pytest.fixture(scope='session')
 def driver(config):
     url = config['url']
@@ -26,15 +30,22 @@ def driver(config):
     yield driver
     driver.quit()
 
+def wait(driver):
+    waitObj = WebDriverWait(driver, 10)
+    waitObj.wait.until(lambda d: d.execute_script('return document.readyState') == 'complete')
+    waitObj.wait.until(EC.presence_of_element_located(waitObj.LOCATORS['root']))
+    waitObj.wait.until(EC.presence_of_element_located((By.TAG_NAME, "button")))
 
 @pytest.fixture
 def audience_page(driver):
     driver.get(AudiencePage.URL)
+    wait(driver)
     return AudiencePage(driver=driver)
 
 @pytest.fixture
 def balance_page(driver):
     driver.get(BalancePage.URL)
+    wait(driver)
     return BalancePage(driver=driver)
 
 @pytest.fixture
@@ -93,4 +104,5 @@ def overview_page(driver):
 @pytest.fixture
 def pixel_page(driver):
     driver.get(PixelPage.URL)
+    wait(driver)
     return PixelPage(driver=driver)
