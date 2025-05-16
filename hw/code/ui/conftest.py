@@ -39,13 +39,13 @@ def wait(driver):
 @pytest.fixture
 def audience_page(driver):
     driver.get(AudiencePage.URL)
-    wait(driver)
+    # wait(driver)
     return AudiencePage(driver=driver)
 
 @pytest.fixture
 def balance_page(driver):
     driver.get(BalancePage.URL)
-    wait(driver)
+    # wait(driver)
     return BalancePage(driver=driver)
 
 @pytest.fixture
@@ -104,5 +104,5 @@ def overview_page(driver):
 @pytest.fixture
 def pixel_page(driver):
     driver.get(PixelPage.URL)
-    wait(driver)
+    # wait(driver)
     return PixelPage(driver=driver)
