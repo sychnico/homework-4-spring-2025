@@ -32,9 +32,9 @@ def driver(config):
 
 def wait(driver):
     waitObj = WebDriverWait(driver, 10)
-    waitObj.wait.until(lambda d: d.execute_script('return document.readyState') == 'complete')
-    waitObj.wait.until(EC.presence_of_element_located(waitObj.LOCATORS['root']))
-    waitObj.wait.until(EC.presence_of_element_located((By.TAG_NAME, "button")))
+    waitObj.until(lambda d: d.execute_script('return document.readyState') == 'complete')
+    waitObj.until(EC.presence_of_element_located(waitObj.LOCATORS['root']))
+    waitObj.until(EC.presence_of_element_located((By.TAG_NAME, "button")))
 
 @pytest.fixture
 def audience_page(driver):
