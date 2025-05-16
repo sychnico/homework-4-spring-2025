@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
 TEST_URLS = {
     'pixels': "https://ads.vk.com/hq/pixels",
 }
