@@ -13,7 +13,7 @@ from ui.pages.main_page import MainPage
 from ui.pages.mobile_apps_page import MobileAppsPage
 from ui.pages.news_page import NewsPage
 from ui.pages.overview_page import OverwiewPage
-from ui.pages.site_page import SitePage
+from ui.pages.pixel_page import PixelPage
 
 @pytest.fixture(scope='session')
 def driver(config):
@@ -91,6 +91,6 @@ def overview_page(driver):
     return OverwiewPage(driver=driver)
 
 @pytest.fixture
-def site_page(driver):
-    driver.get(SitePage.URL)
-    return SitePage(driver=driver)
+def pixel_page(driver):
+    driver.get(PixelPage.URL)
+    return PixelPage(driver=driver)

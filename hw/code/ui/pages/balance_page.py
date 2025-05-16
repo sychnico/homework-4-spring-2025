@@ -2,7 +2,7 @@ from .page import Page
 from ui.locators.balance_locators import BalanceLocators
 
 class BalancePage(Page):
-    URL = "https://ads.vk.com/hq/budget/transactions" # Урл страницы
+    URL = "https://ads.vk.com/hq/pixels" # Урл страницы
     locators = BalanceLocators()
     # Далее тут можно свои константы
     def click_inc_button(self):
