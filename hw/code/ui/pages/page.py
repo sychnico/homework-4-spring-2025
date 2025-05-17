@@ -24,8 +24,15 @@ class Page(object):
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(expected_conditions.presence_of_element_located(locator))
     
+    
+    
     def find_multiple(self, locator, timeout=None):
-        return self.wait(timeout).until(expected_conditions.visibility_of_all_elements_located(locator))
+        try:
+            return self.wait(timeout).until(
+                expected_conditions.visibility_of_all_elements_located(locator)
+            )
+        except TimeoutException:
+            return []  
     
     def became_invisible(self, locator, timeout=None):
         try:
