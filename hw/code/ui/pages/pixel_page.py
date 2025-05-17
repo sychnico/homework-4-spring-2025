@@ -66,3 +66,37 @@ class PixelPage(Page):
 
     def get_success_tag_modal(self):
         return self.find(self.locators.SUCCESS_TAG_MESSAGE, 10)
+
+    def get_error_message_tag(self):
+        """Получение сообщения об ошибке тега"""
+        return self.find(self.locators.INVALID_EMPTY_TAG_MESSAGE)
+
+    def click_create_action_button(self):
+        """Клик по кнопке создания пикселя"""
+        self.click(self.locators.CREATE_ACTION_BUTTON,10)
+
+    def get_action_input_field(self):
+        """Получение поля ввода события"""
+        return self.find(self.locators.INPUT_NAME_ACTION, 10)
+
+    def select_category(self, category_name):
+        self.click(self.locators.CATEGORY_DROPDOWN)
+        option_locator = (self.locators.CATEGORY_OPTION[0],
+        self.locators.CATEGORY_OPTION[1].format(category_name))
+        self.click(option_locator)
+
+    def select_condition(self, condition_name):
+        self.click(self.locators.CONDITION_DROPDOWN)
+        option_locator = (
+            self.locators.CONDITION_OPTION[0],
+            self.locators.CONDITION_OPTION[1].format(condition_name)
+        )
+        self.click(option_locator)
+
+    def get_url_input_field(self):
+        """Получение поля ввода домена"""
+        return self.find(self.locators.INPUT_URL_ACTION, 10)
+
+    def click_action_button(self):
+        """Клик по кнопке подтверждения"""
+        self.click(self.locators.BUTTON_ACTION, 10)

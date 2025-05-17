@@ -44,5 +44,24 @@ class TestPixelPage:
         pixel_page.click_tag_button()
         assert pixel_page.get_success_tag_modal()
 
+    def test_fail_create_tag(self, pixel_page):
+        pixel_page.click_link_settings()
+        pixel_page.switch_to_new_page_tag()
+        pixel_page.click_create_tag_button()
+        field = pixel_page.get_tag_input_field()
+        pixel_page.fill_input_field(field, "")
+        pixel_page.click_tag_button()
+        assert pixel_page.get_error_message_tag()
 
+    def test_create_action(self, pixel_page):
+        pixel_page.click_link_settings()
+        pixel_page.click_create_action_button()
+        field = pixel_page.get_action_input_field()
+        pixel_page.fill_input_field(field, "test")
+        pixel_page.select_category("Покупка")
+        pixel_page.select_condition("Посещена страница")
+        field2 = pixel_page.get_url_input_field()
+        pixel_page.fill_input_field(field2, "giga-mail.ru")
+        pixel_page.click_action_button()
+        pixel_page.assert_new_page(r"https://ads\.vk\.com/hq/pixels/\d+/events")
 
