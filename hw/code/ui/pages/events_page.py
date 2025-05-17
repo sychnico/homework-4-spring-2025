@@ -5,7 +5,6 @@ class EventsPage(Page):
     URL = "https://ads.vk.com/events" # Урл страницы
     locators = EventsLocators()
     # Далее тут можно свои константы
-
     def click_event_card(self):
         self.click(self.locators.EVENT_CARD)
         

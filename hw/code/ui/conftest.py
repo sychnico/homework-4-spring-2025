@@ -64,6 +64,7 @@ def ecomm_page(driver):
 
 @pytest.fixture
 def events_page(driver):
+    driver.get(EventsPage.URL)
     return EventsPage(driver=driver)
 
 @pytest.fixture
