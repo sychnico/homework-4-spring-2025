@@ -1,0 +1,2 @@
+class TestEcommPage:
+    pass

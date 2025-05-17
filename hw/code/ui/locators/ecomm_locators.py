@@ -1,7 +1,17 @@
 from selenium.webdriver.common.by import By
 
 class EcommLocators:
-    EXAMPLE_INPUT = (
-        By.XPATH,
-        "//input[contains(@class, 'EXAMPLEInput__el')]"
-    )
+    CREATE_CATALOG_BUTTON = (By.XPATH, "//button[@data-testid='create-catalog']")
+    EDUCATION_BUTTIN = (By.XPATH, "//button[@data-testid='ecomm-onboarding-start']")
+    MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
+    CLOSE_MODAL_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalDismissButton')]")
+    CREATE_CATALOG_WITH_NOTESES = (By.XPATH, "//*[text()='Создать каталог с подсказками']")
+    WATCH_VIDEO_LESSON = (By.XPATH, "//*[text()='Смотреть видеоурок от экспертов VK']")
+    WATCH_CURSE = (By.XPATH, "//*[text()='Смотреть курс на обучающей платформе']")
+    CLOSE_CREATE_CATALOG = (By.XPATH, "//button[contains(@class, 'vkuiIconButton') and @aria-label='Close']")
+    CATALOG_NAME_INPUT = (By.XPATH, "//input[@data-testid='catalogName-input']")
+    FID_TAB = (By.XPATH, "//div[@data-entityid='url']")
+    MARKET_TAB = (By.XPATH, "//div[@data-entityid='marketplace']")
+    FILE_TAB = (By.XPATH, "//div[@data-entityid='file']")
+    
+    
