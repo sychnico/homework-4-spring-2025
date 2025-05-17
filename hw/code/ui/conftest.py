@@ -49,7 +49,7 @@ def companies_page(driver):
     return CompaniesPage(driver=driver)
 
 @pytest.fixture
-def docoments_page(driver):
+def documents_page(driver):
     driver.get(DocumentsPage.URL)
     return DocumentsPage(driver=driver)
 
