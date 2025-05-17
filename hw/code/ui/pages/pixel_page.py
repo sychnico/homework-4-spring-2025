@@ -1,7 +1,8 @@
 from selenium.webdriver.support import expected_conditions
 from .page import Page
 from ui.locators.pixel_locators import PixelLocators
-
+import string
+import random
 class PixelPage(Page):
     URL = "https://ads.vk.com/hq/pixels"
     locators = PixelLocators()
@@ -12,7 +13,7 @@ class PixelPage(Page):
 
     def get_modal_element(self):
         """Получение элемента модального окна"""
-        return self.find(self.locators.MODAL)
+        return self.find(self.locators.MODAL, 10)
 
     def get_domain_input_field(self):
         """Получение поля ввода домена"""
@@ -94,9 +95,54 @@ class PixelPage(Page):
         self.click(option_locator)
 
     def get_url_input_field(self):
-        """Получение поля ввода домена"""
+        """Получение поля ввода"""
         return self.find(self.locators.INPUT_URL_ACTION, 10)
 
     def click_action_button(self):
         """Клик по кнопке подтверждения"""
         self.click(self.locators.BUTTON_ACTION, 10)
+
+    def get_error_message_url(self):
+        """Получение сообщения об ошибке тега"""
+        return self.find(self.locators.INVALID_EMPTY_URL_MESSAGE, 20)
+
+    def generate_random_string(self, length=8):
+        letters = string.ascii_lowercase
+        return ''.join(random.choice(letters) for _ in range(length))
+
+    def click_more(self):
+        """Клик по кнопке подробнее"""
+        self.click(self.locators.MORE_BUTTON)
+
+    def click_rename(self):
+        """Клик по кнопке Переименовать"""
+        self.click(self.locators.RENAME_BUTTON)
+
+
+    def click_delete(self):
+        """Клик по кнопке Удалить"""
+        self.click(self.locators.DELETE_BUTTON)
+
+    def get_pixel_input_field(self):
+        return self.find(self.locators.INPUT_FIELD, 10)
+
+    def click_change_button(self):
+        """Клик по кнопке подтверждения"""
+        self.click(self.locators.BUTTON_CHANGE, 10)
+
+    def click_delete_button(self):
+        """Клик по кнопке подтверждения"""
+        self.click(self.locators.BUTTON_DELETE, 10)
+
+    def get_pixel_row(self, domain=None, timeout=10):
+        if domain:
+            locator = (self.locators.PIXEL_ROW_BY_DOMAIN[0], self.locators.PIXEL_ROW_BY_DOMAIN[1].format(domain=domain))
+        else:
+            locator = self.locators.PIXEL_ROW
+
+        return self.find(locator, timeout)
+
+    def hover_pixel_row(self, domain=None):
+        row = self.get_pixel_row(domain)
+        self.hover(row)
+        return row
