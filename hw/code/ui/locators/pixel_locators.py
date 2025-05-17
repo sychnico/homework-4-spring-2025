@@ -16,15 +16,22 @@ class PixelLocators:
     BUTTON_ACTION = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Добавить событие']/..")
     MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
     MODAL_END = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__')]")
+    MORE_BUTTON = (By.XPATH, "//button[@aria-label='More']")
+    RENAME_BUTTON = (By.XPATH, "//span[text()='Переименовать']/ancestor::div[role='button']")
+    DELETE_BUTTON = (By.XPATH, "//span[text()='Удалить пиксель']/ancestor::div[role='button']")
+    BUTTON_CHANGE = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Изменить']/..")
+    BUTTON_DELETE = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Удалить']/..")
+    PIXEL_ROW_BY_DOMAIN = (By.XPATH, "//div[contains(@class, 'BaseTable__row') and .//a[contains(@href, '{domain}')]")
 
     INPUT_DOMAIN = (By.XPATH,'//input[@placeholder="Домен сайта"]')
     INPUT_TAG = (By.XPATH, '//span/input[@placeholder="Введите название тега"]')
     INPUT_NAME_ACTION = (By.XPATH, '//span/input[@placeholder="Введите название"]')
     INPUT_URL_ACTION = (By.XPATH, '//span/input[@placeholder="Введите значение"]')
-
+    INPUT_FIELD = (By.XPATH, "//input[contains(@class, 'vkuiInput__el')]")
 
     INVALID_DOMAIN_MESSAGE = (By.XPATH, "//span[contains(@class, 'vkuiTypography') and contains(text(), 'Введите корректный адрес сайта')]" )
     INVALID_EMPTY_TAG_MESSAGE = (By.XPATH, "//span[contains(@class, 'vkuiTypography') and contains(text(), 'Нужно заполнить')]" )
+    INVALID_EMPTY_URL_MESSAGE = (By.XPATH, "//span[contains(@class, 'vkuiFormItem__bottom') and contains(@class, 'vkuiFootnote')]//div[contains(text(), 'Заполните это поле')]")
     SUCCESS_TAG_MESSAGE = (By.XPATH, "//div[@class='BaseTable__row-cell-text']")
 
     SETTINGS_LINK = (By.XPATH,"//a[contains(@class, 'vkuiLink') and text()='Настройка']")

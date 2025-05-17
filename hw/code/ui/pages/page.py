@@ -4,6 +4,8 @@ from selenium.common import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 import time
+import random
+import string
 from selenium.webdriver.common.by import By
 import re
 
@@ -73,7 +75,6 @@ class Page(object):
         self.driver.switch_to.window(handles[1])
 
     def is_redirected_to_pattern(self, url_pattern, timeout=10):
-        """Проверяет соответствие URL шаблону с использованием regex"""
         try:
             self.wait(timeout).until(
                 lambda driver: re.fullmatch(url_pattern, driver.current_url)
