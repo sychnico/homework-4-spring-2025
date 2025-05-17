@@ -24,19 +24,23 @@ class TestPixelPage:
         pixel_page.click_create_new_option()
         assert pixel_page.get_success_modal()
 
-    def test_delete_pixel(self, pixel_page):
-        """Тест удаления пикселя"""
-        pixel_page.click_more()
-        pixel_page.click_delete_button()
-        pixel_page.click_delete_button()
-
     def test_change_pixel(self, pixel_page):
+        pixel_page.hover_pixel()
         pixel_page.click_more()
-        pixel_page.click_rename()
+        pixel_page.click_rename_pixel()
         field = pixel_page.get_pixel_input_field()
         name = pixel_page.generate_random_string()
-        pixel_page.fill_input_field(field, name)
+        pixel_page.fill_random_string(field, name)
         pixel_page.click_change_button()
+        
+    def test_delete_pixel(self, pixel_page):
+        """Тест удаления пикселя"""
+        pixel_page.hover_pixel()
+        pixel_page.click_more()
+        pixel_page.click_delete_pixel()
+        pixel_page.click_delete_button()
+
+   
 
     def test_invalid_domain(self, pixel_page):
         """Тест невалидного домена"""

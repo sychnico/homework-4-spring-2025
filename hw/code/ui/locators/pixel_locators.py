@@ -8,7 +8,7 @@ class PixelLocators:
     BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Добавить пиксель']")
     CREATE_PIXEL_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalCardBase__actions')]")
     CREATE_NEW_BUTTON = By.XPATH, "//div[contains(@class, 'vkuiTappable') and .//span[contains(., 'Создать новый пиксель')]]"
-
+    FIRST_PIXEL = (By.XPATH, "//div[contains(@class, 'PixelsList__row')]")
     CREATE_TAG_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Создать аудиторный тег']")
     BUTTON_TAG = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Создать']")
 
@@ -17,10 +17,10 @@ class PixelLocators:
     MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
     MODAL_END = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__')]")
     MORE_BUTTON = (By.XPATH, "//button[@aria-label='More']")
-    RENAME_BUTTON = (By.XPATH, "//span[text()='Переименовать']/ancestor::div[role='button']")
-    DELETE_BUTTON = (By.XPATH, "//span[text()='Удалить пиксель']/ancestor::div[role='button']")
+    RENAME_BUTTON = (By.XPATH, "//span[text()='Переименовать']")
+    DELETE_BUTTON = (By.XPATH, "//span[text()='Удалить пиксель']")
     BUTTON_CHANGE = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Изменить']/..")
-    BUTTON_DELETE = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Удалить']/..")
+    BUTTON_DELETE = (By.XPATH, "//span[text()='Удалить']")
     PIXEL_ROW_BY_DOMAIN = (By.XPATH, "//div[contains(@class, 'BaseTable__row') and .//a[contains(@href, '{domain}')]")
 
     INPUT_DOMAIN = (By.XPATH,'//input[@placeholder="Домен сайта"]')
