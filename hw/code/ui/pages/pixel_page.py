@@ -13,7 +13,7 @@ class PixelPage(Page):
 
     def get_modal_element(self):
         """Получение элемента модального окна"""
-        return self.find(self.locators.MODAL, 10)
+        return self.became_visible(self.locators.MODAL, 10)
 
     def get_domain_input_field(self):
         """Получение поля ввода домена"""
@@ -23,6 +23,10 @@ class PixelPage(Page):
         """Очистка поля ввода"""
         field.clear()
 
+
+    def fill_random_string(self, field, text):
+        field.send_keys(text)
+        
     def fill_input_field(self, field, text):
         """Заполнение поля ввода с проверкой"""
         field.send_keys(text)
@@ -110,6 +114,9 @@ class PixelPage(Page):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for _ in range(length))
 
+    def hover_pixel(self):
+        self.hover(self.locators.FIRST_PIXEL)
+        
     def click_more(self):
         """Клик по кнопке подробнее"""
         self.click(self.locators.MORE_BUTTON)
@@ -122,6 +129,12 @@ class PixelPage(Page):
     def click_delete(self):
         """Клик по кнопке Удалить"""
         self.click(self.locators.DELETE_BUTTON)
+        
+    def click_delete_pixel(self):
+        self.click(self.locators.DELETE_BUTTON)
+        
+    def click_rename_pixel(self):
+        self.click(self.locators.RENAME_BUTTON)
 
     def get_pixel_input_field(self):
         return self.find(self.locators.INPUT_FIELD, 10)
