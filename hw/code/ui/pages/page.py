@@ -1,4 +1,3 @@
-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.common import TimeoutException
@@ -6,7 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 import time
 from selenium.webdriver.common.by import By
-
+import re
 
 class Page(object):
     URL = 'https://ads.vk.com/'
@@ -15,9 +14,7 @@ class Page(object):
         self.driver = driver
         self.is_open()
 
-  
-
-    def is_open(self, timeout=20):
+    def is_open(self, timeout=5):
         started = time.time()
         while time.time() - started < timeout:
             if self.driver.current_url == self.URL:
@@ -68,7 +65,15 @@ class Page(object):
         assert len(handles) > 1
         self.driver.switch_to.window(handles[1])
 
-    
+    def is_redirected_to_pattern(self, url_pattern, timeout=10):
+        """Проверяет соответствие URL шаблону с использованием regex"""
+        try:
+            self.wait(timeout).until(
+                lambda driver: re.fullmatch(url_pattern, driver.current_url)
+            )
+            return True
+        except TimeoutException:
+            return False
 
    
 
