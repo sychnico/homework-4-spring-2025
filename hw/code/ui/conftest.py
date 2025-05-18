@@ -49,7 +49,7 @@ def companies_page(driver):
     return CompaniesPage(driver=driver)
 
 @pytest.fixture
-def docoments_page(driver):
+def documents_page(driver):
     driver.get(DocumentsPage.URL)
     return DocumentsPage(driver=driver)
 
@@ -64,6 +64,7 @@ def ecomm_page(driver):
 
 @pytest.fixture
 def events_page(driver):
+    driver.get(EventsPage.URL)
     return EventsPage(driver=driver)
 
 @pytest.fixture

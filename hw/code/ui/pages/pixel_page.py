@@ -13,7 +13,7 @@ class PixelPage(Page):
 
     def get_modal_element(self):
         """Получение элемента модального окна"""
-        return self.became_visible(self.locators.MODAL, 10)
+        return self.became_visible(self.locators.MODALS, 10)
 
     def get_domain_input_field(self):
         """Получение поля ввода домена"""

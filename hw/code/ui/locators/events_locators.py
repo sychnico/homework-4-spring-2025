@@ -5,5 +5,5 @@ class EventsLocators:
         By.XPATH,
         "//input[contains(@class, 'EXAMPLEInput__el')]"
     )
-    EVENT_CARD = (By.XPATH, "//*[contains(@class, 'event-card_wrapper__GZkvu')]")
+    EVENT_CARD = (By.XPATH, "//*[contains(@class, 'event-card_wrapper__')]")
     EVENT_ARTICLE = (By.XPATH, "//*[contains(@class, 'commonArticle_article__')]")
