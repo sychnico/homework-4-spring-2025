@@ -13,5 +13,11 @@ class EcommLocators:
     FID_TAB = (By.XPATH, "//div[@data-entityid='url']")
     MARKET_TAB = (By.XPATH, "//div[@data-entityid='marketplace']")
     FILE_TAB = (By.XPATH, "//div[@data-entityid='file']")
-    
+    FID_INPUT = (By.XPATH, "//input[@data-testid='catalogUrl-input']")
+    CREATE_CATALOG_INNER_BUTTON = (By.XPATH, "//button[@type='submit']")
+    CANCEL_BUTTON = (By.XPATH, "//button[@data-entityid='cancel']")
+    ERROR_NULL_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Нужно заполнить']")
+    ERROR_WITHOUT_HTTP_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Необходимо указать протокол http(s)']")
+    ERROR_INVALID_HTTP_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Неверный статус HTTP-запроса']")
+
     
