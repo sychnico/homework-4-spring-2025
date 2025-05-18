@@ -14,7 +14,7 @@ class PixelLocators:
 
     CREATE_ACTION_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Добавить событие']")
     BUTTON_ACTION = (By.XPATH, "//button[@data-testid='submit' and contains(@class, 'vkuiButton')]//span[contains(@class, 'vkuiButton__content') and text()='Добавить событие']/..")
-    MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
+    MODALS = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
     MODAL_END = (By.XPATH, "//*[contains(@class, 'ModalRoot_componentWrapper__')]")
     MORE_BUTTON = (By.XPATH, "//button[@aria-label='More']")
     RENAME_BUTTON = (By.XPATH, "//span[text()='Переименовать']")

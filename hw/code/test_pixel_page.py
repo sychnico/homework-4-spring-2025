@@ -40,8 +40,6 @@ class TestPixelPage:
         pixel_page.click_delete_pixel()
         pixel_page.click_delete_button()
 
-   
-
     def test_invalid_domain(self, pixel_page):
         """Тест невалидного домена"""
         pixel_page.click_create_pixel_button()

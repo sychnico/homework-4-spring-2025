@@ -31,6 +31,14 @@ class MobileAppsPage(Page):
         """Получение сообщения об ошибке"""
         return self.find(self.locators.INVALID_MESSAGE)
 
+    def click_read_code_button(self):
+        return self.click(self.locators.READ_LINK)
+
+    def get_modal_element(self):
+        """Получение элемента модального окна"""
+        return self.find(self.locators.MODAL_APP, 30)
+
+
     # И пишем атомарные функции класса, которые мы будем тестировать в другом месте, эти
     # функции должны быть элементарными и выполнять 1 действие, например клик по кнопке, 
     # нахождение инпута или ввод текст в инпут, это будут все отдельные функции, совмещаются они в /hw/code/TestYourNamePage.py
