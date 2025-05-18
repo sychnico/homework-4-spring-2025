@@ -14,7 +14,9 @@ class LeadFormsLocators:
     EDIT_IMAGES_BUTTON = (By.XPATH, "//button[contains(@aria-label, 'Edit')]")
     SELECT_ALL_IMAGES_BUTTON = (By.XPATH, "//*[contains(@class, 'EditControl_selection__')]//*[text()='Выбрать все']")
     DELETE_IMAGES_BUTTON = (By.XPATH, "//button[contains(@data-testid, 'delete')]")
-
+    UPLOADED_IMAGE_ITEM = (By.XPATH, "//*[contains(@class, 'ItemList_item__')]")
+    UPLOADED_IMAGE_NAME = (By.XPATH, "//*[contains(@class, 'ImageItem_name__')]")
+    SAVE_IMAGE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__') and text()='Сохранить']")
 
     LOAD_IMAGE_BUTTON = (By.XPATH, "//*[contains(@data-testid, 'set-global-image')]")
     LOAD_IMAGE_INPUT = (By.XPATH, "//input[@type='file']")
@@ -24,6 +26,4 @@ class LeadFormsLocators:
     FORM_HEADER_INPUT = (By.XPATH, "//input[@placeholder='Текст заголовка']")
     DESCRIPTION_INPUT = (By.XPATH, "//input[@placeholder='Введите описание']")
 
-    UPLOADED_IMAGE_ITEM = (By.XPATH, "//*[contains(@class, 'ItemList_item__')]")
-    UPLOADED_IMAGE_NAME = (By.XPATH, "//*[contains(@class, 'ImageItem_name__')]")
     NAME_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите фамилию, имя и отчество')]")

@@ -19,6 +19,7 @@ class LeadformsPage(Page):
         load_image_input = self.find(self.locators.LOAD_IMAGE_INPUT)
         load_image_input.send_keys(filepath)
 
+
     def get_last_image_name_from_media_library(self) -> str:
         self.hover(self.locators.UPLOADED_IMAGE_ITEM)
         return self.find(self.locators.UPLOADED_IMAGE_NAME).text
@@ -29,10 +30,11 @@ class LeadformsPage(Page):
         self.click(self.locators.UPLOADED_IMAGE_NAME)
 
     def delete_all_from_media_library(self):
-        self.scroll_and_click(self.locators.EDIT_IMAGES_BUTTON, 10)
-        self.click(self.locators.SELECT_ALL_IMAGES_BUTTON, 10)
-        self.click(self.locators.DELETE_IMAGES_BUTTON, 10)
-        self.click(self.locators.CONFIRM_DELETE_BUTTON, 10)
+        self.click(self.locators.EDIT_IMAGES_BUTTON)
+        self.click(self.locators.SELECT_ALL_IMAGES_BUTTON)
+        self.click(self.locators.DELETE_IMAGES_BUTTON)
+        self.click(self.locators.CONFIRM_DELETE_BUTTON)
+
 
     def get_name_input_field(self):
         return self.find(self.locators.FORM_NAME_INPUT, 10)

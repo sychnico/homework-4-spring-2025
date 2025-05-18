@@ -18,6 +18,8 @@ class TestLeadformsPage:
         leadforms_page.delete_all_from_media_library()
         assert leadforms_page.get_last_image_name_from_media_library() == os.path.basename(FILEPATH)
 
+        leadforms_page.delete_all_from_media_library()
+
 
     def test_create_leadforms_page(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
