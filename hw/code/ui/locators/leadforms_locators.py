@@ -5,6 +5,7 @@ class LeadFormsLocators:
         By.XPATH,
         "//input[contains(@class, 'EXAMPLEInput__el')]"
     )
+    SAVE_MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
     CREATE_LEADFORM_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton') and text()='Создать лид-форму']")
     MODAL_FORM_LEAD = (By.XPATH, "//form[contains(@class, 'ModalSidebarPage_container__')]")
     SUBMIT_BUTTON = (By.XPATH, "//button[@data-testid='submit']")

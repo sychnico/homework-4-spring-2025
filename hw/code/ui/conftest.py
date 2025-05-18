@@ -22,7 +22,7 @@ def driver(config):
     driver.get(url)
     driver.maximize_window()
     import time
-    time.sleep(50)
+    time.sleep(20)
     yield driver
     driver.quit()
 

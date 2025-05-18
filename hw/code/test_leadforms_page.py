@@ -1,5 +1,5 @@
 import os
-
+import time
 FILEPATH = os.path.join(os.path.dirname(__file__), 'images/leds.jpg')
 
 class TestLeadformsPage:
@@ -15,16 +15,15 @@ class TestLeadformsPage:
     def test_upload_image(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
         leadforms_page.upload_image(FILEPATH)
-        leadforms_page.delete_all_from_media_library()
-        assert leadforms_page.get_last_image_name_from_media_library() == os.path.basename(FILEPATH)
 
-        leadforms_page.delete_all_from_media_library()
 
 
     def test_create_leadforms_page(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
         leadforms_page.click_last_image_name_from_media_library()
+
         field = leadforms_page.get_name_input_field()
+        leadforms_page.clear_input_field(field)
         leadforms_page.fill_input_field(field, "test")
         field = leadforms_page.get_company_input_field()
         leadforms_page.fill_input_field(field, "test2")

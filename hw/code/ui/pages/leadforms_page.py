@@ -1,6 +1,6 @@
 from .page import Page
 from ui.locators.leadforms_locators import LeadFormsLocators
-
+import time
 class LeadformsPage(Page):
     URL = "https://ads.vk.com/hq/leadads/leadforms" # Урл страницы
     locators = LeadFormsLocators()
@@ -18,6 +18,7 @@ class LeadformsPage(Page):
         self.click(self.locators.LOAD_IMAGE_BUTTON)
         load_image_input = self.find(self.locators.LOAD_IMAGE_INPUT)
         load_image_input.send_keys(filepath)
+        self.click(self.locators.SAVE_IMAGE_BUTTON, 15)
 
 
     def get_last_image_name_from_media_library(self) -> str:
@@ -28,6 +29,9 @@ class LeadformsPage(Page):
         self.click(self.locators.LOAD_IMAGE_BUTTON)
         self.hover(self.locators.UPLOADED_IMAGE_ITEM)
         self.click(self.locators.UPLOADED_IMAGE_NAME)
+        # self.became_visible(self.locators.SAVE_IMAGE_BUTTON, timeout=20)
+        # self.click(self.locators.SAVE_IMAGE_BUTTON, timeout=20)
+        # self.became_invisible(self.locators.SAVE_IMAGE_BUTTON, timeout=15)
 
     def delete_all_from_media_library(self):
         self.click(self.locators.EDIT_IMAGES_BUTTON)
@@ -35,7 +39,9 @@ class LeadformsPage(Page):
         self.click(self.locators.DELETE_IMAGES_BUTTON)
         self.click(self.locators.CONFIRM_DELETE_BUTTON)
 
-
+    def clear_input_field(self, field):
+        field.clear()
+        
     def get_name_input_field(self):
         return self.find(self.locators.FORM_NAME_INPUT, 10)
 
