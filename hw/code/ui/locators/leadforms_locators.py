@@ -27,4 +27,28 @@ class LeadFormsLocators:
     FORM_HEADER_INPUT = (By.XPATH, "//input[@placeholder='Текст заголовка']")
     DESCRIPTION_INPUT = (By.XPATH, "//input[@placeholder='Введите описание']")
 
+    ADRESS_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите адрес')]")
+
     NAME_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите фамилию, имя и отчество')]")
+
+    CREATE_QUESTIONS_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton') and text()='Создать опрос']")
+    ClOSE_QUESTIONS_BUTTON = (By.XPATH, "//button[contains(@aria-label, 'Close')]")
+    SURVEYS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='surveys']")
+    YCLIENTS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='yclients']")
+
+    ACTIVE_STATUS_CELL = (By.XPATH, "//div[@role='gridcell' and text()='Активен']")
+
+    COMPANY_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите название')]")
+    NAME_TITLE_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите название компании')]")
+    TITLE_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите заголовок')]")
+    DESCRIPTION_QUE_INPUT = (By.XPATH, "//textarea[@placeholder='Введите описание опроса']")
+
+    QUESTION_INPUT = (By.XPATH, "//textarea[@placeholder='Текст вопроса']")
+    ANSWER_1_INPUT = (By.XPATH, "(//input[@placeholder='Введите ответ'])[1]")
+    ANSWER_2_INPUT = (By.XPATH, "(//input[@placeholder='Введите ответ'])[2]")
+    SAVE_QUE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__') and text()='Запустить опрос']")
+
+    ARCHIVE_LINK = (By.XPATH, "//span[contains(@class, 'Nav_text__mcKDd') and text()='Архивировать']")
+    ARCHIVE_BUTTON = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Архивировать']")
+
+    HOVER_BUTTON = (By.XPATH, "//*[contains(@class, 'BaseTable__row')]")

@@ -52,7 +52,7 @@ class Page(object):
 
     def wait(self, timeout=None):
         if timeout is None:
-            timeout = 5
+            timeout = 30
         return WebDriverWait(self.driver, timeout=timeout)
 
     def click(self, locator, timeout=None):
