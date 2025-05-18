@@ -17,6 +17,9 @@ class LeadformsPage(Page):
     def click_yclients(self):
         self.click(self.locators.YCLIENTS_TAB)
 
+    def click_lead(self):
+        self.click(self.locators.LEAD_TAB)
+
     def click_close_questions_button(self):
         self.click(self.locators.ClOSE_QUESTIONS_BUTTON)
 
@@ -43,6 +46,7 @@ class LeadformsPage(Page):
     def clear_input_field(self, field):
         field.clear()
         self.wait().until(lambda _: field.get_attribute("value") == "",)
+
     def get_name_input_field(self):
         return self.find(self.locators.FORM_NAME_INPUT, 60)
 
@@ -67,14 +71,13 @@ class LeadformsPage(Page):
         return self.find(self.locators.ADRESS_INPUT)
 
     def continue_click(self):
-        self.scroll_and_click(self.locators.CONTINUE_BUTTON, timeout=10)
+        self.scroll_and_click(self.locators.CONTINUE_BUTTON, timeout=15)
 
     def save_form_click(self):
-        self.click(self.locators.SAVE_IMAGE_BUTTON, timeout=20)
+        self.click(self.locators.SAVE_IMAGE_BUTTON, timeout=10)
 
     def save_questions_click(self):
         self.click(self.locators.SUBMIT_BUTTON, timeout=20)
-
 
     def get_company_input(self):
         return self.find(self.locators.COMPANY_INPUT)
@@ -105,3 +108,9 @@ class LeadformsPage(Page):
 
     def click_archive_button(self):
         self.click(self.locators.ARCHIVE_BUTTON)
+
+    def find_locator_ques(self):
+        return self.find((self.locators.ADD_QUESTION_BUTTON), timeout=10)
+
+    def find_locator_site(self):
+        return self.find((self.locators.ADD_SITE_BUTTON))

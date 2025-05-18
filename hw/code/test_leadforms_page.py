@@ -37,6 +37,7 @@ class TestLeadformsPage:
         leadforms_page.continue_click()
         leadforms_page.continue_click()
         leadforms_page.continue_click()
+        leadforms_page.find_locator_site()
         field = leadforms_page.get_input_name()
         leadforms_page.fill_input_field(field, "Ivan Ivanov Ivanovich")
         field = leadforms_page.get_adress()
@@ -44,6 +45,7 @@ class TestLeadformsPage:
         leadforms_page.save_form_click()
 
     def test_archive_leadforms_page(self, leadforms_page):
+        leadforms_page.click_lead()
         leadforms_page.hover_panel()
         leadforms_page.click_archive_link()
         leadforms_page.click_archive_button()
@@ -80,3 +82,9 @@ class TestLeadformsPage:
         leadforms_page.continue_click()
         leadforms_page.save_questions_click()
         leadforms_page.find_locator()
+
+    def test_archive_questions_page(self, leadforms_page):
+        leadforms_page.click_surveys()
+        leadforms_page.hover_panel()
+        leadforms_page.click_archive_link()
+        leadforms_page.click_archive_button()

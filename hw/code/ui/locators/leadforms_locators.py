@@ -1,10 +1,6 @@
 from selenium.webdriver.common.by import By
 
 class LeadFormsLocators:
-    EXAMPLE_INPUT = (
-        By.XPATH,
-        "//input[contains(@class, 'EXAMPLEInput__el')]"
-    )
     SAVE_MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
     CREATE_LEADFORM_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton') and text()='Создать лид-форму']")
     MODAL_FORM_LEAD = (By.XPATH, "//form[contains(@class, 'ModalSidebarPage_container__')]")
@@ -35,7 +31,9 @@ class LeadFormsLocators:
     ClOSE_QUESTIONS_BUTTON = (By.XPATH, "//button[contains(@aria-label, 'Close')]")
     SURVEYS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='surveys']")
     YCLIENTS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='yclients']")
-
+    LEAD_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='leadforms']")
+    ADD_QUESTION_BUTTON = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Добавить вопрос']")
+    ADD_SITE_BUTTON = (By.XPATH, "//span[text()='Добавить сайт']")
     ACTIVE_STATUS_CELL = (By.XPATH, "//div[@role='gridcell' and text()='Активен']")
 
     COMPANY_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите название')]")
