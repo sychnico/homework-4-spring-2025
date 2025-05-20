@@ -44,7 +44,7 @@ def cases_page(driver):
     return CasesPage(driver=driver)
 
 @pytest.fixture
-def companies_page(driver):
+def campaign_page(driver):
     driver.get(CompaniesPage.URL)
     return CompaniesPage(driver=driver)
 
@@ -60,6 +60,7 @@ def insights_page(driver):
 
 @pytest.fixture
 def ecomm_page(driver):
+    driver.get(EcommPage.URL)
     return EcommPage(driver=driver)
 
 @pytest.fixture

@@ -18,6 +18,6 @@ class EcommLocators:
     CANCEL_BUTTON = (By.XPATH, "//button[@data-entityid='cancel']")
     ERROR_NULL_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Нужно заполнить']")
     ERROR_WITHOUT_HTTP_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Необходимо указать протокол http(s)']")
-    ERROR_INVALID_HTTP_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Неверный статус HTTP-запроса']")
+    ERROR_INVALID_HTTP_VALUE_FIT_INPUT = (By.XPATH, "//*[text()='Не удалось выполнить запрос по HTTP']")
 
     
