@@ -24,9 +24,9 @@ class PixelLocators:
     PIXEL_ROW_BY_DOMAIN = (By.XPATH, "//div[contains(@class, 'BaseTable__row') and .//a[contains(@href, '{domain}')]")
 
     INPUT_DOMAIN = (By.XPATH,'//input[@placeholder="Домен сайта"]')
-    INPUT_TAG = (By.XPATH, '//span/input[@placeholder="Введите название тега"]')
-    INPUT_NAME_ACTION = (By.XPATH, '//span/input[@placeholder="Введите название"]')
-    INPUT_URL_ACTION = (By.XPATH, '//span/input[@placeholder="Введите значение"]')
+    INPUT_TAG = (By.XPATH, '//input[@placeholder="Введите название тега"]')
+    INPUT_NAME_ACTION = (By.XPATH, '//input[@placeholder="Введите название"]')
+    INPUT_URL_ACTION = (By.XPATH, '//input[@placeholder="Введите значение"]')
     INPUT_FIELD = (By.XPATH, "//input[contains(@class, 'vkuiInput__el')]")
 
     INVALID_DOMAIN_MESSAGE = (By.XPATH, "//span[contains(@class, 'vkuiTypography') and contains(text(), 'Введите корректный адрес сайта')]" )
