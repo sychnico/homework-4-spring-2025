@@ -121,7 +121,8 @@ class CampaignPageLocators:
                                     "//span[contains(@class, 'vkuiFormField--sizeY-compact')]//div//div[contains(@data-testid, 'юридическая информация, макс. 115 символов')]")
     ADVERTISER_DESCRIPTION_TEXT = (By.XPATH,
                                    "//span[contains(@class, 'vkuiFormField--sizeY-compact')]//div//div[contains(@data-testid, 'юридическая информация, макс. 115 символов')]//p")
-    MEDIATEC = (By.XPATH, "//*[@data-testid='set-global-image']")
+    MEDIATEC = (By.XPATH, "//*[text()='Медиатека']")
+    CORARI = (By.XPATH, "//*[contains(@class, 'AdMediaPreview_autogenIcon__')]")
     IMAGE_ITEM = (By.XPATH, "//*[contains(@class, 'ImageItem_imageItem__')]")
     PREVIEW_IMAGE = (By.XPATH, "//*[contains(@class, 'AdMediaPreview_preview__')]")
     SUBMIT_BUTTON = (By.XPATH, "//*[@data-testid='submit']")

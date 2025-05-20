@@ -154,6 +154,7 @@ class CompaniesPage(Page):
         return True
 
     def click_russia_button(self):
+        self.click(self.locators.CREATE_FOOTER_CONTINUE, timeout=10)
         self.click(self.locators.REGION_BUTTON(self.REGION_BUTTON_NAME_LIST[0]))
 
     def click_regions_section(self):
@@ -183,11 +184,11 @@ class CompaniesPage(Page):
 
     def fill_demography(self):
         self.scroll_and_click(self.locators.AGE_SELECT_INPUT('12'))
-        self.scroll_and_click(self.locators.DROPDOWN_OPTIONS(self.MIN_AGE))
-        self.scroll_and_click(self.locators.AGE_SELECT_INPUT('75'))
-        self.scroll_and_click(self.locators.DROPDOWN_OPTIONS(self.MAX_AGE))
-        self.scroll_and_click(self.locators.PEGI_AGE_SELECT)
-        self.scroll_and_click(self.locators.DROPDOWN_OPTIONS(self.PEGI))
+        self.click(self.locators.DROPDOWN_OPTIONS(self.MIN_AGE))
+        self.click(self.locators.AGE_SELECT_INPUT('75'))
+        self.click(self.locators.DROPDOWN_OPTIONS(self.MAX_AGE))
+        self.click(self.locators.PEGI_AGE_SELECT)
+        self.click(self.locators.DROPDOWN_OPTIONS(self.PEGI))
 
     def interest_subsection_became_visible(self):
         return self.became_visible(self.locators.INTEREST_SUBSECTION)
@@ -241,7 +242,8 @@ class CompaniesPage(Page):
         return self.became_visible(self.locators.IMAGE_ITEM)
 
     def click_image_item(self):
-        self.click(self.locators.IMAGE_ITEM)
+        self.hover(self.locators.IMAGE_ITEM, timeout=3)
+        self.click(self.locators.IMAGE_ITEM, timeout=3)
 
     def preview_image_became_visible(self):
         return self.became_visible(self.locators.PREVIEW_IMAGE)
@@ -284,7 +286,11 @@ class CompaniesPage(Page):
         return self.became_visible(self.locators.MEDIA_CONTENT_LIST)
 
     def click_publish_button(self):
-        self.click(self.locators.CREATE_FOOTER_PUBLISH)
+        self.became_visible(self.locators.CORARI, timeout=10)
+        self.find(self.locators.CORARI, timeout=10)
+        self.became_visible(self.locators.CREATE_FOOTER_PUBLISH, timeout=3)
+        self.hover(self.locators.CREATE_FOOTER_PUBLISH, timeout=3)
+        self.click(self.locators.CREATE_FOOTER_PUBLISH,  timeout=3)
 
     def buttons_changed(self):
         return self.became_invisible(self.locators.CREATE_FOOTER_CONTINUE) and self.became_visible(
