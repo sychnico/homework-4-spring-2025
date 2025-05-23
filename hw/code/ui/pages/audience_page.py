@@ -183,7 +183,7 @@ class AudiencePage(Page):
         download.send_keys(filepath)
 
     def click_save_offline(self):
-        self.click(self.locators.SAVE_USER_LIST)
+        self.click(self.locators.SAVE_OFFLINE)
 
     def find_new_offline_block(self):
         return bool(self.driver.find_elements(*self.locators.OFFLINE_BLOCK))
