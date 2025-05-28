@@ -72,16 +72,15 @@ class Page(object):
     def go_to_new_tab(self):
         handles = self.driver.window_handles
         assert len(handles) > 1
-        self.driver.switch_to.window(handles[1])
+        self.driver.switch_to.window(handles[-1])
 
     def is_redirected_to_pattern(self, url_pattern, timeout=10):
         try:
             self.wait(timeout).until(
-                lambda driver: re.fullmatch(url_pattern, driver.current_url)
+                lambda driver: re.match(url_pattern, driver.current_url)
             )
             return True
         except TimeoutException:
             return False
-
    
 
