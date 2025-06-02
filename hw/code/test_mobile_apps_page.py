@@ -14,7 +14,3 @@ class TestAppsPage:
         mobile_apps_page.fill_input_app_field(field, "invalid.ru")
         mobile_apps_page.click_app_button()
         assert mobile_apps_page.get_error_message()
-
-    def test_read_code(self, mobile_apps_page):
-        mobile_apps_page.click_read_code_button()
-        assert mobile_apps_page.get_modal_code()

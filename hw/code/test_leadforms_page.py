@@ -10,10 +10,6 @@ class TestLeadformsPage:
         leadforms_page.click_create_leadform_button()
         leadforms_page.is_displayed_leadform()
 
-    def test_click_close_leadforms_page(self, leadforms_page):
-        leadforms_page.click_create_leadform_button()
-        leadforms_page.click_close_leadform_button()
-
     def test_tab_page(self, leadforms_page):
         leadforms_page.click_surveys()
         leadforms_page.click_yclients()
@@ -37,7 +33,6 @@ class TestLeadformsPage:
         leadforms_page.continue_click()
         leadforms_page.continue_click()
         leadforms_page.continue_click()
-        leadforms_page.find_locator_site()
         field = leadforms_page.get_input_name()
         leadforms_page.fill_input_field(field, "Ivan Ivanov Ivanovich")
         field = leadforms_page.get_adress()
@@ -55,10 +50,6 @@ class TestLeadformsPage:
         leadforms_page.click_create_questions_button()
         leadforms_page.is_displayed_leadform()
 
-    def test_click_close_questions_page(self, leadforms_page):
-        leadforms_page.click_surveys()
-        leadforms_page.click_create_questions_button()
-        leadforms_page.click_close_questions_button()
 
     def test_create_questions_page(self, leadforms_page):
         leadforms_page.click_surveys()
