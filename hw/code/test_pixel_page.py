@@ -13,6 +13,16 @@ class TestPixelPage:
         field = pixel_page.get_domain_input_field()
         pixel_page.clear_input_field(field)
         pixel_page.fill_input_field(field, "giga-mail.ru")
+        
+    def test_successful_pixel_creation(self, pixel_page):
+        """Тест успешного создания пикселя"""
+        pixel_page.click_create_pixel_button()
+        field = pixel_page.get_domain_input_field()
+        pixel_page.clear_input_field(field)
+        pixel_page.fill_input_field(field, "giga-mail.ru")
+        pixel_page.click_submit_button()
+        pixel_page.click_create_new_option()
+        assert pixel_page.get_success_modal()
 
     def test_change_pixel(self, pixel_page):
         pixel_page.hover_pixel()
