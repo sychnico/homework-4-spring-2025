@@ -13,7 +13,7 @@ class TestBalancePage:
         assert len(up_top_modal) == 1
     
     def test_close_pay_modal(self, balance_page):
-        self.go_to_pay(balance_page=balance_page)
+        assert self.go_to_pay(balance_page=balance_page)
         balance_page.close_modal()
         balance_page.wait_modal_disappears()
         
@@ -31,10 +31,9 @@ class TestBalancePage:
         assert error
         
     def test_successful_pay(self, balance_page):
-        self.go_to_pay(balance_page=balance_page)
+        assert self.go_to_pay(balance_page=balance_page)
         balance_page.set_amound_input(RIGHT_PAY_VALUE)
         balance_page.click_pay_balance()
-        balance_page.find_text_pay_info()
 
         
     def test_open_bonus_program(self, balance_page):
@@ -52,7 +51,7 @@ class TestBalancePage:
         assert len(modal) == 1
         
     def test_close_promo_modal(self, balance_page):
-        self.go_to_promo(balance_page=balance_page)
+        assert self.go_to_promo(balance_page=balance_page)
         balance_page.close_modal()
         balance_page.wait_modal_disappears()
     

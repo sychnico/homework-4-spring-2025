@@ -59,12 +59,10 @@ class EcommPage(Page):
     def get_fit_input_http_error(self):
         return self.find(self.locators.ERROR_INVALID_HTTP_VALUE_FIT_INPUT)
     
-    def set_fit_input(self, value):
-        field = self.find(self.locators.FID_INPUT)
+    def find_fit_input(self):
+        return self.find(self.locators.FID_INPUT)
+
+    def set_fit_input(self, field, value):
         field.clear()
         field.send_keys(value)
-    # Далее тут можно свои константы
-
-    # И пишем атомарные функции класса, которые мы будем тестировать в другом месте, эти 
-    # функции должны быть элементарными и выполнять 1 действие, например клик по кнопке, 
-    # нахождение инпута или ввод текст в инпут, это будут все отдельные функции, совмещаются они в /hw/code/TestYourNamePage.py
+   

@@ -14,7 +14,6 @@ class TestAudiencePage:
     def test_add_external_audience(self, audience_page):
         audience_page.click_add_external_audience()
         audience_page.input_key_to_external_audience(INVALID_KEY)
-        print("Button exists:", audience_page.driver.find_elements(*audience_page.locators.ERROR_MESSAGE))
         audience_page.click_activate_external_audience()
         assert audience_page.is_error()
 

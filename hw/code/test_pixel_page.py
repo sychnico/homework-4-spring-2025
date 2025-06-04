@@ -11,6 +11,7 @@ class TestPixelPage:
         """Тест ввода домена"""
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
+        assert field
         pixel_page.clear_input_field(field)
         pixel_page.fill_input_field(field, "giga-mail.ru")
         
@@ -18,17 +19,22 @@ class TestPixelPage:
         """Тест успешного создания пикселя"""
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
+        assert field
         pixel_page.clear_input_field(field)
         pixel_page.fill_input_field(field, "giga-mail.ru")
         pixel_page.click_submit_button()
-        pixel_page.click_create_new_option()
-        assert pixel_page.get_success_modal()
+        try:
+            pixel_page.click_create_new_option()
+            assert pixel_page.get_success_modal()
+        except Exception:
+            assert False
 
     def test_change_pixel(self, pixel_page):
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_rename_pixel()
         field = pixel_page.get_pixel_input_field()
+        assert field
         name = pixel_page.generate_random_string()
         pixel_page.fill_random_string(field, name)
         pixel_page.click_change_button()
@@ -39,11 +45,17 @@ class TestPixelPage:
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
         pixel_page.click_delete_button()
+        try:
+            pixel_page.get_pixel_row()
+            assert False
+        except Exception:
+            assert True
 
     def test_invalid_domain(self, pixel_page):
         """Тест невалидного домена"""
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
+        assert field
         pixel_page.clear_input_field(field)
         pixel_page.fill_input_field(field, "invalid")
         pixel_page.click_submit_button()
@@ -59,31 +71,37 @@ class TestPixelPage:
         pixel_page.switch_to_new_page_tag()
         pixel_page.click_create_tag_button()
         field = pixel_page.get_tag_input_field()
+        assert field
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
         pixel_page.click_tag_button()
         assert pixel_page.get_success_tag_modal()
 
     def test_fail_create_tag(self, pixel_page):
+        """Тест создания тега с пустым полем"""
         pixel_page.click_link_settings()
-        pixel_page.switch_to_new_page_tag()
-        pixel_page.click_create_tag_button()
-        field = pixel_page.get_tag_input_field()
-        pixel_page.fill_input_field(field, "")
-        pixel_page.click_tag_button()
-        assert pixel_page.get_error_message_tag()
+        try:
+            pixel_page.switch_to_new_page_tag()
+            pixel_page.click_create_tag_button()
+            field = pixel_page.get_tag_input_field()
+            assert field
+            pixel_page.fill_input_field(field, "")
+            pixel_page.click_tag_button()
+            assert pixel_page.get_error_message_tag()
+        except Exception:
+            assert False
 
     def test_create_action(self, pixel_page):
         pixel_page.click_link_settings()
-        time.sleep(1)
         pixel_page.click_create_action_button()
-        time.sleep(1)
         field = pixel_page.get_action_input_field()
+        assert field
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
         pixel_page.select_category("Покупка")
         pixel_page.select_condition("Посещена страница")
         field2 = pixel_page.get_url_input_field()
+        assert field2
         pixel_page.fill_input_field(field2, name)
         pixel_page.click_action_button()
         pixel_page.assert_new_page(r"https://ads\.vk\.com/hq/pixels/\d+/events")
@@ -92,12 +110,14 @@ class TestPixelPage:
         pixel_page.click_link_settings()
         pixel_page.click_create_action_button()
         field = pixel_page.get_action_input_field()
+        assert field
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
         pixel_page.select_category("Покупка")
         pixel_page.select_condition("Посещена страница")
         field2 = pixel_page.get_url_input_field()
+        assert field2
         pixel_page.fill_input_field(field2, "")
         pixel_page.click_action_button()
-        pixel_page.get_error_message_url()
+        assert pixel_page.get_error_message_url()
 

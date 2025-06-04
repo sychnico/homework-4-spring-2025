@@ -135,9 +135,6 @@ class CompaniesPage(Page):
     def fill_campaign_form(self):
         budget = self.find(self.locators.BUDGET_INPUT, timeout=10)
         budget.send_keys(150)
-        # self.click(self.locators.TARGET_ACTION_SELECT, timeout=10)
-        # self.became_visible(self.locators.POKAZ, timeout=10)
-        # self.click(self.locators.POKAZ, timeout=10)
         self.click(self.locators.STRATEGY_ACTION_SELECT, timeout=10)
         self.click(self.locators.CREATE_FOOTER_CONTINUE, timeout=10)
 

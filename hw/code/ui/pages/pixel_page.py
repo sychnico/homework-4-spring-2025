@@ -38,7 +38,8 @@ class PixelPage(Page):
 
     def click_create_new_option(self):
         """Клик по опции 'Создать новый'"""
-        self.scroll_and_click(self.locators.CREATE_NEW_BUTTON, 10)
+        element = self.wait_for_element(self.locators.CREATE_NEW_BUTTON, 10)
+        self.scroll_and_click(element, 10)
 
     def get_success_modal(self):
         """Получение модального окна успеха"""
@@ -55,7 +56,9 @@ class PixelPage(Page):
         assert self.is_redirected_to_pattern(url)
 
     def switch_to_new_page_tag(self):
-        self.click(self.locators.AUDIENCE_TAGS_TAB)
+        """Переключение на вкладку аудиторных тегов"""
+        element = self.wait_for_element(self.locators.AUDIENCE_TAGS_TAB, 10)
+        self.click(element)
 
     def click_create_tag_button(self):
         """Клик по кнопке создания пикселя"""
@@ -108,7 +111,7 @@ class PixelPage(Page):
 
     def get_error_message_url(self):
         """Получение сообщения об ошибке тега"""
-        return self.find(self.locators.INVALID_EMPTY_URL_MESSAGE, 20)
+        return self.find(self.locators.INVALID_EMPTY_URL_MESSAGE, timeout=20)
 
     def generate_random_string(self, length=8):
         letters = string.ascii_lowercase
@@ -159,3 +162,9 @@ class PixelPage(Page):
         row = self.get_pixel_row(domain)
         self.hover(row)
         return row
+
+    def wait_for_element(self, locator, timeout=10):
+        """Ожидание появления элемента"""
+        return self.wait(timeout).until(
+            expected_conditions.presence_of_element_located(locator)
+        )

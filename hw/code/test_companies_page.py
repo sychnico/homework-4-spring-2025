@@ -15,18 +15,19 @@ class TestCampaignPage():
         campaign_page.click_interest_subsection()
         campaign_page.fill_interests()
         campaign_page.click_stop_interest_opener()
-        campaign_page.has_stop_interest_content()
+        assert campaign_page.has_stop_interest_content(), "Блок исключения интересов не отображается"
         campaign_page.fill_stop_interest()
         campaign_page.click_interest_section()
         campaign_page.click_device_section()
         campaign_page.click_mobile_checkbox()
         campaign_page.click_continue_button()
+        assert campaign_page.has_ads_inputs_content(), "Поля для ввода объявления не отображаются"
         campaign_page.rename_entity(campaign_page.AD_NAME)
         campaign_page.click_logo_input()
         campaign_page.click_image_item()
         campaign_page.fill_ad_inputs_and_textarea()
         campaign_page.click_media()
         campaign_page.click_image_item()
-        campaign_page.submit_button_became_visible()
+        assert campaign_page.submit_button_became_visible(), "Кнопка отправки не появилась"
         campaign_page.click_submit_button()
         campaign_page.click_publish_button()

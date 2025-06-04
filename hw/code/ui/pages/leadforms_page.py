@@ -27,7 +27,7 @@ class LeadformsPage(Page):
         self.click(self.locators.CANCEL_LEADFORM_BUTTON)
 
     def is_displayed_leadform(self):
-        self.find(self.locators.MODAL_FORM_LEAD, timeout= 30)
+        return self.find(self.locators.MODAL_FORM_LEAD, timeout= 30)
 
     def hover_panel(self):
         self.hover(self.locators.HOVER_BUTTON)
