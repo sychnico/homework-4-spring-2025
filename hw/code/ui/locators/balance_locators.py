@@ -19,4 +19,5 @@ class BalanceLocators:
     ERROR_WRONG_PROMOCODE = (By.XPATH, "//*[text()='Неверный промокод']")
     OPLATA_TEXT_INFO  = (By.XPATH, "//button[@data-testid='pay_btn']")
     BONUS_TAB_TEXT_INFO  = (By.XPATH, "//*[text()='Персональные акции']")
+    AMOUNT_TEXT_INFO = (By.XPATH, "//span[@data-testid='amount']")
 

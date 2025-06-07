@@ -2,7 +2,7 @@ from .page import Page
 from ui.locators.ecomm_locators import EcommLocators
 
 class EcommPage(Page):
-    URL = "https://ads.vk.com/hq/ecomm/catalogs" # Урл страницы
+    URL = "https://ads.vk.com/hq/ecomm/catalogs" 
     locators = EcommLocators()
     
     def click_create_catalog(self):
@@ -41,12 +41,6 @@ class EcommPage(Page):
     def click_fit_tab(self):
         return self.click(self.locators.FID_TAB)
     
-    def click_market_tab(self):
-        return self.click(self.locators.MARKET_TAB)
-    
-    def click_file_tab(self):
-        return self.click(self.locators.FILE_TAB)
-    
     def click_create_catalog_inner(self):
         self.click(self.locators.CREATE_CATALOG_INNER_BUTTON)
         
@@ -65,4 +59,7 @@ class EcommPage(Page):
     def set_fit_input(self, field, value):
         field.clear()
         field.send_keys(value)
+        
+    def find_catalog_name_input(self):
+        return self.find(self.locators.CATALOG_NAME)
    

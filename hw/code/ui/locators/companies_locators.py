@@ -6,7 +6,7 @@ class CampaignPageLocators:
         By.XPATH,
         "//*[@data-testid='create-button']",
     )
-
+    DONE_NAME_COMPANY = (By.XPATH, "//*[contains(@data-testid, 'name-link')]")
     NAME_SIGN = (By.XPATH, "//*[contains(@class, 'EditableTitle_container__')]")
     NAME_EDIT = (By.XPATH, "//*[contains(@class, 'EditableTitle_container__')]//textarea")
     SUBMIT_NAME = (By.XPATH, "//*[contains(@class, 'EditableTitle_container__')]//svg")

@@ -4,7 +4,10 @@ from ui.locators.balance_locators import BalanceLocators
 class BalancePage(Page):
     URL = "https://ads.vk.com/hq/budget/transactions" # Урл страницы
     locators = BalanceLocators()
-    # Далее тут можно свои константы
+    
+    def find_amount_text_info(self):
+        return self.find(self.locators.AMOUNT_TEXT_INFO, timeout=5)
+
     def click_inc_button(self):
         self.click(self.locators.INC_BALANCE_BUTTON)
            
@@ -60,8 +63,6 @@ class BalancePage(Page):
         return self.became_visible(self.locators.OPLATA_TEXT_INFO, timeout=timeout)
     
     def find_text_bonus_info(self):
-        return self.find(self.locators.BONUS_TAB_TEXT_INFO)
+        return self.find(self.locators.BONUS_TAB_TEXT_INFO, timeout=15)
         
-    # И пишем атомарные функции класса, которые мы будем тестировать в другом месте, эти 
-    # функции должны быть элементарными и выполнять 1 действие, например клик по кнопке, 
-    # нахождение инпута или ввод текст в инпут, это будут все отдельные функции, совмещаются они в /hw/code/TestYourNamePage.py
+  

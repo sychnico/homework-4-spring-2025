@@ -1,9 +1,10 @@
 from selenium.webdriver.common.by import By
 
 class EcommLocators:
+    CATALOG_NAME = (By.XPATH, "//*[contains(@class, 'CatalogHeader_header__')]")
     CREATE_CATALOG_BUTTON = (By.XPATH, "//button[@data-testid='create-catalog']")
     EDUCATION_BUTTIN = (By.XPATH, "//button[@data-testid='ecomm-onboarding-start']")
-    MODAL = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
+    MODAL = (By.XPATH, "//*['ModalRoot_overlay__')]")
     CLOSE_MODAL_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalDismissButton')]")
     CREATE_CATALOG_WITH_NOTESES = (By.XPATH, "//*[text()='Создать каталог с подсказками']")
     WATCH_VIDEO_LESSON = (By.XPATH, "//*[text()='Смотреть видеоурок от экспертов VK']")
