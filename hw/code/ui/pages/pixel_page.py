@@ -23,6 +23,8 @@ class PixelPage(Page):
         """Очистка поля ввода"""
         field.clear()
 
+    def find_test_pixel(self, str):
+        return self.find(self.locators.test_pixel_name(str))
 
     def fill_random_string(self, field, text):
         field.send_keys(text)
@@ -53,7 +55,7 @@ class PixelPage(Page):
         return self.click(self.locators.SETTINGS_LINK)
 
     def assert_new_page(self, url):
-        assert self.is_redirected_to_pattern(url)
+        return self.is_redirected_to_pattern(url)
 
     def switch_to_new_page_tag(self):
         """Переключение на вкладку аудиторных тегов"""

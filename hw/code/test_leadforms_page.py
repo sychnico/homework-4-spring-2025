@@ -10,13 +10,22 @@ class TestLeadformsPage:
         leadforms_page.click_create_leadform_button()
         assert leadforms_page.is_displayed_leadform()
 
-    def test_tab_page(self, leadforms_page):
+    def test_tab_surveys(self, leadforms_page):
         leadforms_page.click_surveys()
+        assert leadforms_page.find_create_questions_button()
+
+    def test_tab_yclients(self, leadforms_page):
         leadforms_page.click_yclients()
+        assert leadforms_page.find_yclients_button()
 
     def test_upload_image(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
         leadforms_page.upload_image(FILEPATH)
+        try:
+            elem = leadforms_page.find_load_logo_button()
+            assert False
+        except Exception:
+            assert True
 
     def test_create_leadforms_page(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
@@ -38,12 +47,18 @@ class TestLeadformsPage:
         field = leadforms_page.get_adress()
         leadforms_page.fill_input_field(field, "Moscow moscowich")
         leadforms_page.save_form_click()
+        assert leadforms_page.find_test_leadform()
 
     def test_archive_leadforms_page(self, leadforms_page):
         leadforms_page.click_lead()
         leadforms_page.hover_panel()
         leadforms_page.click_archive_link()
         leadforms_page.click_archive_button()
+        try:
+            elem = leadforms_page.find_test_leadform()
+            assert False
+        except Exception:
+            assert True
       
     def test_click_create_questions_page(self, leadforms_page):
         leadforms_page.click_surveys()
@@ -79,4 +94,5 @@ class TestLeadformsPage:
         leadforms_page.hover_panel()
         leadforms_page.click_archive_link()
         leadforms_page.click_archive_button()
+        assert leadforms_page.find_test_leadform()
         

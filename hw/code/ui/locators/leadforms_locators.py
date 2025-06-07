@@ -27,10 +27,13 @@ class LeadFormsLocators:
 
     NAME_INPUT = (By.XPATH, "//input[contains(@placeholder, 'Введите фамилию, имя и отчество')]")
 
+    LOAD_LOGO_BUTTON = (By.XPATH, "//span[text()='Загрузить логотип']")
+
     CREATE_QUESTIONS_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton') and text()='Создать опрос']")
     ClOSE_QUESTIONS_BUTTON = (By.XPATH, "//button[contains(@aria-label, 'Close')]")
     SURVEYS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='surveys']")
     YCLIENTS_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='yclients']")
+    YCLIENTS_BUTTON = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Перейти в YCLIENTS']")
     LEAD_TAB = (By.XPATH, "//div[@data-testid='tabs-item' and @aria-controls='leadforms']")
     ADD_QUESTION_BUTTON = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Добавить вопрос']")
     ADD_SITE_BUTTON = (By.XPATH, "//span[text()='Добавить сайт']")
@@ -50,3 +53,5 @@ class LeadFormsLocators:
     ARCHIVE_BUTTON = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Архивировать']")
 
     HOVER_BUTTON = (By.XPATH, "//*[contains(@class, 'BaseTable__row')]")
+
+    TEST_LEADFORM_NAME = (By.XPATH, "//span[text()='test']")

@@ -41,3 +41,7 @@ class PixelLocators:
     CATEGORY_OPTION = (By.XPATH, "//div[@role='option' and contains(., '{}')]")
     CONDITION_DROPDOWN = (By.CSS_SELECTOR, ".vkuiCustomSelectInput__el[placeholder='Выберите условие']")
     CONDITION_OPTION = (By.XPATH, "//div[@role='option' and contains(., '{}')]")
+
+    TEST_PIXEL_NAME = (By.XPATH, "//span[text()='giga-mail.ru']")
+    def test_pixel_name(self, str):
+        return (By.XPATH, "//span[text()='" + str +"']")

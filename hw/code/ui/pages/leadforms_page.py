@@ -11,11 +11,17 @@ class LeadformsPage(Page):
     def click_create_questions_button(self):
         self.click(self.locators.CREATE_QUESTIONS_BUTTON)
 
+    def find_create_questions_button(self):
+        return self.find(self.locators.CREATE_QUESTIONS_BUTTON)
+
     def click_surveys(self):
         self.click(self.locators.SURVEYS_TAB)
 
     def click_yclients(self):
         self.click(self.locators.YCLIENTS_TAB)
+
+    def find_yclients_button(self):
+        return self.find(self.locators.YCLIENTS_BUTTON)
 
     def click_lead(self):
         self.click(self.locators.LEAD_TAB)
@@ -37,6 +43,9 @@ class LeadformsPage(Page):
         load_image_input = self.find(self.locators.LOAD_IMAGE_INPUT)
         load_image_input.send_keys(filepath)
         self.click(self.locators.SAVE_IMAGE_BUTTON, 15)
+
+    def find_load_logo_button(self):
+        return self.find(self.locators.LOAD_LOGO_BUTTON)
 
     def click_last_image_name_from_media_library(self):
         self.click(self.locators.LOAD_IMAGE_BUTTON)
@@ -114,3 +123,6 @@ class LeadformsPage(Page):
 
     def find_locator_site(self):
         return self.find((self.locators.ADD_SITE_BUTTON))
+
+    def find_test_leadform(self):
+        return self.find(self.locators.TEST_LEADFORM_NAME)
