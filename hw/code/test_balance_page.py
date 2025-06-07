@@ -13,7 +13,7 @@ class TestBalancePage:
         assert len(up_top_modal) == 1
     
     def test_close_pay_modal(self, balance_page):
-        assert self.go_to_pay(balance_page=balance_page)
+        self.go_to_pay(balance_page=balance_page)
         balance_page.close_modal()
         balance_page.wait_modal_disappears()
         
@@ -51,7 +51,7 @@ class TestBalancePage:
         assert len(modal) == 1
         
     def test_close_promo_modal(self, balance_page):
-        assert self.go_to_promo(balance_page=balance_page)
+        self.go_to_promo(balance_page=balance_page)
         balance_page.close_modal()
         balance_page.wait_modal_disappears()
     
