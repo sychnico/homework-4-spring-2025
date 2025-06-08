@@ -55,3 +55,9 @@ class LeadFormsLocators:
     HOVER_BUTTON = (By.XPATH, "//*[contains(@class, 'BaseTable__row')]")
 
     TEST_LEADFORM_NAME = (By.XPATH, "//span[text()='test']")
+
+    def span_name(self, str):
+        return (By.XPATH, "//span[text()='" + str +"']")
+
+    def div_name(self, str):
+        return (By.XPATH, "//div[text()='" + str +"']")

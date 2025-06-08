@@ -12,22 +12,21 @@ class TestLeadformsPage:
 
     def test_tab_surveys(self, leadforms_page):
         leadforms_page.click_surveys()
-        assert leadforms_page.find_create_questions_button()
+        elem = leadforms_page.find_create_questions_button()
+        assert elem.text == "Создать опрос"
 
     def test_tab_yclients(self, leadforms_page):
         leadforms_page.click_yclients()
-        assert leadforms_page.find_yclients_button()
+        elem = leadforms_page.find_yclients_button()
+        assert elem.text == "Перейти в YCLIENTS"
 
     def test_upload_image(self, leadforms_page):
         leadforms_page.click_create_leadform_button()
         leadforms_page.upload_image(FILEPATH)
-        try:
-            elem = leadforms_page.find_load_logo_button()
-            assert False
-        except Exception:
-            assert True
+        assert leadforms_page.check_elem_deleted("Загрузить логотип")
 
     def test_create_leadforms_page(self, leadforms_page):
+        """Проверка создания лидформы"""
         leadforms_page.click_create_leadform_button()
         field = leadforms_page.get_name_input_field()
         leadforms_page.clear_input_field(field)
@@ -47,18 +46,15 @@ class TestLeadformsPage:
         field = leadforms_page.get_adress()
         leadforms_page.fill_input_field(field, "Moscow moscowich")
         leadforms_page.save_form_click()
-        assert leadforms_page.find_test_leadform()
+        test_leadform = leadforms_page.find_test_leadform("test")
+        assert test_leadform.text == "test"
 
-    def test_archive_leadforms_page(self, leadforms_page):
+        """Проверка архивирования лидформы"""
         leadforms_page.click_lead()
         leadforms_page.hover_panel()
         leadforms_page.click_archive_link()
         leadforms_page.click_archive_button()
-        try:
-            elem = leadforms_page.find_test_leadform()
-            assert False
-        except Exception:
-            assert True
+        assert leadforms_page.check_elem_deleted("test")
       
     def test_click_create_questions_page(self, leadforms_page):
         leadforms_page.click_surveys()
@@ -87,12 +83,16 @@ class TestLeadformsPage:
         leadforms_page.fill_input_field(field, "no")
         leadforms_page.continue_click()
         leadforms_page.save_questions_click()
-        assert leadforms_page.find_locator()
+        test_question = leadforms_page.find_test_leadform("test")
+        assert test_question.text == "test"
+        elem = leadforms_page.find_locator()
+        assert elem.text == "Активен"
 
     def test_archive_questions_page(self, leadforms_page):
         leadforms_page.click_surveys()
         leadforms_page.hover_panel()
         leadforms_page.click_archive_link()
         leadforms_page.click_archive_button()
-        assert leadforms_page.find_test_leadform()
+        elem = leadforms_page.find_test_leadform("test")
+        assert elem.text == "test"
         

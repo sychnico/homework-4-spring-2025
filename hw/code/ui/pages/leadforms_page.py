@@ -124,5 +124,8 @@ class LeadformsPage(Page):
     def find_locator_site(self):
         return self.find((self.locators.ADD_SITE_BUTTON))
 
-    def find_test_leadform(self):
-        return self.find(self.locators.TEST_LEADFORM_NAME)
+    def find_test_leadform(self, str):
+        return self.find(self.locators.span_name(str))
+
+    def check_elem_deleted(self, str):
+        return not self.became_invisible(self.locators.span_name(str), timeout=10)
