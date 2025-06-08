@@ -11,3 +11,5 @@ class MobileAppsLocators:
 
     READ_LINK = (By.XPATH,"//a[contains(@class, 'vkuiLink') and text()='Посмотреть код']")
 
+    def app_link(self, str):
+        return (By.LINK_TEXT, str)

@@ -38,6 +38,9 @@ class MobileAppsPage(Page):
         """Получение элемента модального окна"""
         return self.find(self.locators.MODAL_APP, 30)
 
+    def find_app_link(self, str):
+        return self.find(self.locators.app_link(str), 5)
+
 
     # И пишем атомарные функции класса, которые мы будем тестировать в другом месте, эти
     # функции должны быть элементарными и выполнять 1 действие, например клик по кнопке, 
