@@ -27,4 +27,6 @@ class TestAppsPage:
         field = mobile_apps_page.get_app_input_field()
         mobile_apps_page.fill_input_app_field(field, invalid_app_data["url"])
         mobile_apps_page.click_app_button()
-        assert mobile_apps_page.get_error_message()
+        error = mobile_apps_page.get_error_message()
+        assert error.text == "Введите корректную ссылку на приложение"
+
