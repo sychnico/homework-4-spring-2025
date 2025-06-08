@@ -1,13 +1,26 @@
 from selenium.webdriver.common.by import By
 
 class AudienceLocators:
+
+    def USERLIST_BLOCK_BY_NAME(self, name):
+        return (By.XPATH, f'//div[@id="audience.users_list"]//div[contains(@class, "EditableName_nameValue__") and normalize-space(text())="{name}"]')
+
+    def AUDIENCE_BLOCK_BY_NAME(self, name):
+        return (By.XPATH, f'//div[@id="audience"]//span[contains(@class, "NameCell_name") and normalize-space(text())="{name}"]')
+
+    def OFFLINE_BLOCK_BY_NAME(self, name):
+        return (By.XPATH, f'//div[@id="audience.offline_conversion"]//div[contains(@class, "EditableName_nameValue__") and normalize-space(text())="{name}"]')
+    def SOURCE_BLOCK_BY_NAME(self, name):
+        return (By.XPATH, f'//div[contains(@class, "SourceType_button")][.//*[contains(., "{name}")]]')
+
+    AUDIENCE_ITEM_MENU = (By.CSS_SELECTOR, "[data-testid='audience-item-menu']")
     CREATE_AUDIENCE_BUTTON = (By.CSS_SELECTOR, "[data-testid='create-audience']")
 
     MORE_ACTIONS = (By.CSS_SELECTOR, "[data-testid='other-buttons']")
     ADD_EXTERNAL_AUDIENCE_BUTTON = (By.CSS_SELECTOR, "[data-testid='Активировать внешнюю аудиторию-others']")
     EXTERNAL_AUDIENCE_INPUT = (By.CSS_SELECTOR, "input[placeholder='Введите ключ']")
     ACTIVATE_EXTERNAL_AUDIENCE_BUTTON  = (By.XPATH, "//button[.//span[contains(text(), 'Активировать')]]")
-    ERROR_MESSAGE = (By.XPATH, "//span[text()='Ключ не найден' and @role='alert']")
+    ERROR_MESSAGE = (By.XPATH, "//span[@role='alert']")
 
     LIST_USERS_SECTION = (By.ID, "tab_audience.users_list")
     DOWNLOAD_NEW_LIST_USERS_BUTTON = (By.XPATH, '//span[text()="Загрузить список"]')
@@ -15,7 +28,7 @@ class AudienceLocators:
     LIST_OF_TYPES_USER_LISTS = (By.XPATH, '//div[contains(@class, "vkuiCustomSelect")]//input[@role="combobox"]')
     TYPE_USER_LIST = (By.XPATH, '//div[contains(@class, "vkuiCustomSelect")]//*[text()="ID ВКонтакте"]')
     DOWNLOAD_FILE_LIST_USERS_BUTTON = (By.XPATH, "//input[@type= 'file']")
-    ERROR_FILE = (By.XPATH, "//*[contains(text(), 'Не удалось загрузить файл')]")
+    ERROR_FILE_MODAL = (By.XPATH, "//div[@role = 'dialog']//span")
     SAVE_USER_LIST = (By.CSS_SELECTOR, "[data-testid='submit']")
     USER_LIST_BLOCK = (By.CSS_SELECTOR, "div.BaseTable__row[role='row']")
 

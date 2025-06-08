@@ -3,10 +3,18 @@ from ui.locators.audience_locators import AudienceLocators
 from selenium.webdriver.support.ui import Select
 import os
 from os import path
+from selenium.webdriver.common.action_chains import ActionChains
 
 class AudiencePage(Page):
     URL = "https://ads.vk.com/hq/audience"
     locators = AudienceLocators()
+
+    def has_this_element(self, locator):
+        return self.became_visible(locator, timeout=3)
+
+    def delete_user_list(self, name):
+        list = self.find(self.locators.USERLIST_BLOCK_BY_NAME(name))
+        ActionChains(self.driver).move_to_element(list).perform()
 
     def click_create_audience_button(self):
         self.click(self.locators.CREATE_AUDIENCE_BUTTON, 10)
@@ -33,7 +41,9 @@ class AudiencePage(Page):
 
     def input_name_audience(self, name):
         input = self.find(self.locators.NAME_AUDIENCE_INPUT, 5)
+        self.driver.execute_script("arguments[0].value = '';", input)
         input.send_keys(name)
+
 
     def save_audience(self):
         self.click(self.locators.SAVE_AUDIENCE_BUTTON, 5)
@@ -49,6 +59,7 @@ class AudiencePage(Page):
 
     def input_name_keywords(self, name):
         input = self.find(self.locators.NAME_KEYWORDS_INPUT, 5)
+        self.driver.execute_script("arguments[0].value = '';", input)
         input.send_keys(name)
 
     def input_keywords(self, keywords):
@@ -63,6 +74,7 @@ class AudiencePage(Page):
 
     def input_name_list_users(self, name):
         input = self.find(self.locators.NAME_LIST_USERS_INPUT, 5)
+        self.driver.execute_script("arguments[0].value = '';", input)
         input.send_keys(name)
 
     def choose_type_of_list_users(self):
@@ -70,7 +82,7 @@ class AudiencePage(Page):
         self.click(self.locators.TYPE_USER_LIST, 5)
 
     def download_file_user_list(self, filepath):
-        filepathCorrect = os.path.abspath(path.join(path.curdir, "hw", "code", "test_files", filepath))
+        filepathCorrect = os.path.abspath(path.join(path.curdir, filepath))
         download = self.find(self.locators.DOWNLOAD_FILE_LIST_USERS_BUTTON, 5)
         download.send_keys(filepathCorrect)
 
@@ -94,6 +106,7 @@ class AudiencePage(Page):
 
     def input_name_offline(self, name):
         input = self.find(self.locators.NAME_OFFLINE_INPUT, 5)
+        self.driver.execute_script("arguments[0].value = '';", input)
         input.send_keys(name)
 
     def choose_type_of_offline(self):
@@ -101,7 +114,7 @@ class AudiencePage(Page):
         self.click(self.locators.TYPE_OFFLINE, 5)
 
     def download_file_offline(self, filepath):
-        filepathCorrect = os.path.abspath(path.join(path.curdir, "hw", "code", "test_files", filepath))
+        filepathCorrect = os.path.abspath(path.join(path.curdir, filepath))
         download = self.find(self.locators.DOWNLOAD_OFFLINE_FILE_BUTTON, 5)
         download.send_keys(filepathCorrect)
 
