@@ -42,6 +42,7 @@ class TestAudiencePage:
         audience_page.click_save_user_list()
         assert audience_page.became_visible(
             audience_page.locators.USERLIST_BLOCK_BY_NAME(VALID_USER_LIST_NAME))
+        audience_page.delete_user_list(VALID_USER_LIST_NAME)
 
     def test_add_offline_error(self, audience_page):
         audience_page.click_offline()
@@ -76,22 +77,23 @@ class TestAudiencePage:
         audience_page.input_keywords(VALID_KEYWORDS)
         audience_page.save_source()
         assert audience_page.became_visible(
-            audience_page.locators.SOURCE_BLOCK_BY_NAME(VALID_USER_LIST_NAME))
+            audience_page.locators.SOURCE_BLOCK_BY_NAME(VALID_KEYWORD_NAME))
         audience_page.save_audience()
         assert audience_page.became_visible(
-            audience_page.locators.AUDIENCE_BLOCK_BY_NAME(VALID_USER_LIST_NAME))
+            audience_page.locators.AUDIENCE_BLOCK_BY_NAME(VALID_AUDIENCE_NAME_ADD))
+        audience_page.delete_user_list(VALID_AUDIENCE_NAME_ADD)
 
     def test_exclude_keywords_source(self, audience_page):
         audience_page.click_create_audience_button()
-        audience_page.input_name_audience(VALID_AUDIENCE_NAME_ADD)
+        audience_page.input_name_audience(VALID_AUDIENCE_NAME_EXCLUDE)
         audience_page.click_exclude_new_source()
         audience_page.click_key_words_source()
         audience_page.input_name_keywords(VALID_KEYWORD_NAME)
         audience_page.input_keywords(VALID_KEYWORDS)
         audience_page.save_source()
         assert audience_page.became_visible(
-            audience_page.locators.SOURCE_BLOCK_BY_NAME(VALID_USER_LIST_NAME))
+            audience_page.locators.SOURCE_BLOCK_BY_NAME(VALID_KEYWORD_NAME))
         audience_page.save_audience()
         assert audience_page.became_visible(
-            audience_page.locators.AUDIENCE_BLOCK_BY_NAME(VALID_USER_LIST_NAME))
+            audience_page.locators.AUDIENCE_BLOCK_BY_NAME(VALID_AUDIENCE_NAME_EXCLUDE))
 

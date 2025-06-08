@@ -15,6 +15,8 @@ class AudienceLocators:
 
     AUDIENCE_ITEM_MENU = (By.CSS_SELECTOR, "[data-testid='audience-item-menu']")
     CREATE_AUDIENCE_BUTTON = (By.CSS_SELECTOR, "[data-testid='create-audience']")
+    DELETE_AUDIENCE_BUTTON = (By.XPATH, "//label[@data-testid='dropdown-item']")
+    DELETE_CONFIRM_BUTTON = (By.XPATH, "//button[.//span[text()='Удалить']]")
 
     MORE_ACTIONS = (By.CSS_SELECTOR, "[data-testid='other-buttons']")
     ADD_EXTERNAL_AUDIENCE_BUTTON = (By.CSS_SELECTOR, "[data-testid='Активировать внешнюю аудиторию-others']")
