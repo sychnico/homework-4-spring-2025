@@ -32,6 +32,13 @@ class AudiencePage(Page):
         confirm = self.find(self.locators.DELETE_CONFIRM_BUTTON)
         confirm.click()
 
+    def find_offline(self, name):
+        return self.locators.OFFLINE_BLOCK_BY_NAME(name)
+    def find_audience(self, name):
+        return self.locators.AUDIENCE_BLOCK_BY_NAME(name)
+    def find_userlist(self, name):
+        return self.locators.USERLIST_BLOCK_BY_NAME(name)
+
     def click_create_audience_button(self):
         self.click(self.locators.CREATE_AUDIENCE_BUTTON, 10)
 

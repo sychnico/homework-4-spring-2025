@@ -3,13 +3,14 @@ from selenium.webdriver.common.by import By
 class AudienceLocators:
 
     def USERLIST_BLOCK_BY_NAME(self, name):
-        return (By.XPATH, f'//div[@id="audience.users_list"]//div[contains(@class, "EditableName_nameValue__") and normalize-space(text())="{name}"]')
+        return (By.XPATH, f'//div[@id="audience.users_list"]//div[contains(@class, "EditableName_nameValue__") and text()="{name}"]')
 
     def AUDIENCE_BLOCK_BY_NAME(self, name):
-        return (By.XPATH, f'//div[@id="audience"]//span[contains(@class, "NameCell_name") and normalize-space(text())="{name}"]')
+        return (By.XPATH, f'//div[@id="audience"]//span[contains(@class, "NameCell_name") and text()="{name}"]')
 
     def OFFLINE_BLOCK_BY_NAME(self, name):
-        return (By.XPATH, f'//div[@id="audience.offline_conversion"]//div[contains(@class, "EditableName_nameValue__") and normalize-space(text())="{name}"]')
+        return (By.XPATH, f'//div[@id="audience.offline_conversion"]//div[contains(@class, "EditableName_nameValue__") and text()="{name}"]')
+
     def SOURCE_BLOCK_BY_NAME(self, name):
         return (By.XPATH, f'//div[contains(@class, "SourceType_button")][.//*[contains(., "{name}")]]')
 
