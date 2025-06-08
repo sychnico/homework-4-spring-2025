@@ -78,13 +78,10 @@ class TestPixelPage:
     def test_fail_create_tag(self, pixel_page):
         """Тест создания тега с пустым полем"""
         pixel_page.click_link_settings()
-        pixel_page.switch_to_new_page_tag()
-        pixel_page.click_create_tag_button()
-        field = pixel_page.get_tag_input_field()
-        assert field
         pixel_page.fill_input_field(field, "")
         pixel_page.click_tag_button()
-        assert pixel_page.get_error_message_tag()
+        error = pixel_page.get_error_message_tag()
+        assert 'Нужно заполнить' in error.text
 
     def test_create_action(self, pixel_page):
         pixel_page.click_link_settings()
