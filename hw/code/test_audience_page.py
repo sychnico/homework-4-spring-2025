@@ -42,7 +42,6 @@ class TestAudiencePage:
         audience_page.click_save_user_list()
         assert audience_page.became_visible(
             audience_page.locators.USERLIST_BLOCK_BY_NAME(VALID_USER_LIST_NAME)) #ищем блок листа по имени созданного
-        audience_page.delete_user_list(VALID_USER_LIST_NAME)
 
     def test_add_offline_error(self, audience_page):
         audience_page.click_offline()
@@ -81,7 +80,6 @@ class TestAudiencePage:
         audience_page.save_audience()
         assert audience_page.became_visible(
             audience_page.find_audience(VALID_AUDIENCE_NAME_ADD)) #ищем блок аудитории по имени созданного
-        audience_page.delete_user_list(VALID_AUDIENCE_NAME_ADD)
 
     def test_exclude_keywords_source(self, audience_page):
         audience_page.click_create_audience_button()
