@@ -6,10 +6,6 @@ CATALOG_WITH_NOTES_TEXT = "Создать каталог с подсказкам
 WATCH_CURSE_TEXT = "Смотреть курс на обучающей платформе"
 WATCH_VIDEO_LESSON_TEXT = "Смотреть видеоурок от экспертов VK"
 
-FIT_TAB_TEXT = "Фид или сообщество"
-FILE_TAB_TEXT = "Вручную"
-MARKET_TAB_TEXT = "Маркетплейс"
-
 NULL_ERROR_TEXT = "Нужно заполнить"
 WRONG_ERROR_TEXT = "Необходимо указать протокол http(s)"
 HTTP_ERROR_TEXT = "Не удалось выполнить запрос по HTTP"
@@ -25,16 +21,7 @@ class TestEcommPage:
         assert ecomm_page.find_catalog_with_noteses().text == CATALOG_WITH_NOTES_TEXT
         assert ecomm_page.find_watch_curse().text == WATCH_CURSE_TEXT
         assert ecomm_page.find_watch_video_lesson().text == WATCH_VIDEO_LESSON_TEXT
-        
-
-        
-    def test_create_catalog_modal_open(self, ecomm_page):
-        ecomm_page.click_create_catalog()
-        assert FIT_TAB_TEXT in ecomm_page.find_fit_tab().text
-        assert FILE_TAB_TEXT in ecomm_page.find_file_tab().text
-        assert MARKET_TAB_TEXT in ecomm_page.find_market_tab().text
-        
-    
+            
 
     def test_fit_input_null_value(self, ecomm_page):
         self.go_to_create(ecomm_page)

@@ -1,6 +1,4 @@
 import os
-import time
-from time import sleep
 
 FILEPATH = os.path.join(os.path.dirname(__file__), 'images/leds.jpg')
 

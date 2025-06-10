@@ -1,5 +1,4 @@
 from dataclasses import field
-import time
 
 class TestPixelPage:
     def test_modal_appears(self, pixel_page):
