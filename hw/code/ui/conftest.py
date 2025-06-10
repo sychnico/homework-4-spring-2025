@@ -26,11 +26,15 @@ def driver(config):
     yield driver
     driver.quit()
 
-@pytest.fixture
+@pytest.fixture()
 def audience_page(driver):
-    driver.get(AudiencePage.URL)
-    # wait(driver)
-    return AudiencePage(driver=driver)
+    driver.get(AudiencePage.url)
+    page = AudiencePage(driver)
+    yield page
+    page.delete_audience()
+    page.click_list_users()
+    page.delete_user_list()
+
 
 @pytest.fixture
 def balance_page(driver):

@@ -1,6 +1,5 @@
 from dataclasses import field
 import time
-import pytest
 
 class TestPixelPage:
 

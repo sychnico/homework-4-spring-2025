@@ -12,8 +12,8 @@ class AudiencePage(Page):
     def has_this_element(self, locator):
         return self.became_visible(locator, timeout=3)
 
-    def delete_audience(self, name):
-        list = self.find(self.locators.AUDIENCE_BLOCK_BY_NAME(name))
+    def delete_audience(self):
+        list = self.find(self.locators.AUDIENCE_BLOCK)
         ActionChains(self.driver).move_to_element(list).perform()
         menu = self.find(self.locators.AUDIENCE_ITEM_MENU)
         ActionChains(self.driver).move_to_element(menu).click(menu).perform()
@@ -22,8 +22,9 @@ class AudiencePage(Page):
         confirm = self.find(self.locators.DELETE_CONFIRM_BUTTON)
         confirm.click()
 
-    def delete_user_list(self, name):
-        list = self.find(self.locators.USERLIST_BLOCK_BY_NAME(name))
+
+    def delete_user_list(self):
+        list = self.find(self.locators.USER_LIST_BLOCK)
         ActionChains(self.driver).move_to_element(list).perform()
         menu = self.find(self.locators.AUDIENCE_ITEM_MENU)
         ActionChains(self.driver).move_to_element(menu).click(menu).perform()
