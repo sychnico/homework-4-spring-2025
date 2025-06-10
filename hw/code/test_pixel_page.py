@@ -31,6 +31,18 @@ class TestPixelPage:
         test_pixel = pixel_page.find_test_pixel(name)
         assert test_pixel.text == name
 
+    @pytest.mark.parametrize("pixel_data", [
+        {
+            "url": "giga-mail.ru"
+        },
+        {
+            "url": "lirili-lari.la"
+        },
+        {
+            "url": "new-test-na.me"
+        }
+    ])
+    def test_pixel_change(self, pixel_page, pixel_data):
         """Тест изменения пикселя"""
         pixel_page.hover_pixel()
         pixel_page.click_more()
@@ -42,8 +54,21 @@ class TestPixelPage:
         pixel_page.click_change_button()
         test_pixel = pixel_page.find_test_pixel(name)
         assert test_pixel.text == name
-        
+    
+    @pytest.mark.parametrize("pixel_data", [
+        {
+            "url": "giga-mail.ru"
+        },
+        {
+            "url": "lirili-lari.la"
+        },
+        {
+            "url": "new-test-na.me"
+        }
+    ])
+    def test_delete_pixel(self, pixel_page, pixel_data):
         """Тест удаления пикселя"""
+        name = pixel_data["url"]
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_delete_pixel()

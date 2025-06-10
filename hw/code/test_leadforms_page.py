@@ -64,6 +64,12 @@ class TestLeadformsPage:
         test_leadform = leadforms_page.find_test_leadform(leadform_data["name"])
         assert test_leadform.text == leadform_data["name"]
 
+    @pytest.mark.parametrize("leadform_data", [
+        {
+            "name": "test"
+        }
+    ])
+    def test_archive_leadform(self, leadforms_page, leadform_data):
         """Проверка архивирования лидформы"""
         leadforms_page.click_lead()
         leadforms_page.hover_panel()
