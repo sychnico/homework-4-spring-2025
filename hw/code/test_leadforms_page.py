@@ -120,6 +120,12 @@ class TestLeadformsPage:
         elem = leadforms_page.find_locator()
         assert elem.text == ACTIVE
 
+    @pytest.mark.parametrize("questions_data", [
+        {
+            "name": "test"
+        }
+    ])
+    def test_archive_questions(self, leadforms_page, questions_data):
         """Проверка архивирования опроса"""
         leadforms_page.click_surveys()
         leadforms_page.hover_panel()
