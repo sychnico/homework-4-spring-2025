@@ -44,4 +44,4 @@ class PixelLocators:
 
     TEST_PIXEL_NAME = (By.XPATH, "//span[text()='giga-mail.ru']")
     def test_pixel_name(self, str):
-        return (By.XPATH, "//span[text()='" + str +"']")
+        return (By.XPATH, "//span[contains(text()='" + str +"')]")

@@ -26,6 +26,9 @@ class PixelPage(Page):
     def find_test_pixel(self, str):
         return self.find(self.locators.test_pixel_name(str))
 
+    def check_pixel_deleted(self, str):
+        return self.became_invisible(self.locators.test_pixel_name(str))
+
     def fill_random_string(self, field, text):
         field.send_keys(text)
         

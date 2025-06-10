@@ -1,43 +1,53 @@
 from dataclasses import field
+import time
 
 class TestPixelPage:
+
     def test_modal_appears(self, pixel_page):
         """Тест появления модального окна"""
         pixel_page.click_create_pixel_button()
         assert pixel_page.get_modal_element()
-        
-    def test_successful_pixel_creation(self, pixel_page):
+    
+    @pytest.mark.parametrize("pixel_data", [
+        {
+            "url": "giga-mail.ru"
+        },
+        {
+            "url": "lirili-lari.la"
+        },
+        {
+            "url": "new-test-na.me"
+        }
+    ])
+    def test_successful_pixel_creation(self, pixel_page, pixel_data):
         """Тест успешного создания пикселя"""
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
         pixel_page.clear_input_field(field)
-        pixel_page.fill_input_field(field, "giga-mail.ru")
+        name = pixel_data["url"]
+        pixel_page.fill_input_field(field, name)
         pixel_page.click_submit_button()
-        assert pixel_page.find_test_pixel("giga-mail.ru")
-   
+        test_pixel = pixel_page.find_test_pixel(name)
+        assert test_pixel.text == name
 
-    def test_change_pixel(self, pixel_page):
+        """Тест изменения пикселя"""
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_rename_pixel()
         field = pixel_page.get_pixel_input_field()
         pixel_page.clear_input_field(field)
-        name = "new-test-na.me"
+        name = pixel_data["url"]
         pixel_page.fill_input_field(field, name)
         pixel_page.click_change_button()
-        assert pixel_page.find_test_pixel("new-test-na.me")
+        test_pixel = pixel_page.find_test_pixel(name)
+        assert test_pixel.text == name
         
-    def test_delete_pixel(self, pixel_page):
         """Тест удаления пикселя"""
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
         pixel_page.click_delete_button()
-        try:
-            elem = pixel_page.find_test_pixel()
-            assert False
-        except Exception:
-            assert True
+        assert pixel_page.check_pixel_deleted(name)
     
 
     def test_invalid_domain(self, pixel_page):
@@ -67,16 +77,10 @@ class TestPixelPage:
     def test_fail_create_tag(self, pixel_page):
         """Тест создания тега с пустым полем"""
         pixel_page.click_link_settings()
-        try:
-            pixel_page.switch_to_new_page_tag()
-            pixel_page.click_create_tag_button()
-            field = pixel_page.get_tag_input_field()
-            assert field
-            pixel_page.fill_input_field(field, "")
-            pixel_page.click_tag_button()
-            assert pixel_page.get_error_message_tag()
-        except Exception:
-            assert True
+        pixel_page.fill_input_field(field, "")
+        pixel_page.click_tag_button()
+        error = pixel_page.get_error_message_tag()
+        assert 'Нужно заполнить' in error.text
 
     def test_create_action(self, pixel_page):
         pixel_page.click_link_settings()
