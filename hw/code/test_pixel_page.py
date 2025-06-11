@@ -6,6 +6,7 @@ BUY_CATEGORY = "Покупка"
 PAGE_VISITED_CONDITION = "Посещена страница"
 EMPTY_FIELD_ERROR = "Нужно заполнить"
 INVALID_DOMAIN = "invalid"
+PIXEL_PAGE = r"https://ads\.vk\.com/hq/pixels/\d+/events"
 
 class TestPixelPage:
 
@@ -93,7 +94,7 @@ class TestPixelPage:
     def test_pixel_settings(self, pixel_page):
         """Тест перехода к настройкам первого пикселя"""
         pixel_page.click_link_settings()
-        assert pixel_page.assert_new_page(r"https://ads\.vk\.com/hq/pixels/\d+/events")
+        assert pixel_page.assert_new_page(PIXEL_PAGE)
 
     def test_create_tag(self, pixel_page):
         pixel_page.click_link_settings()
@@ -124,7 +125,7 @@ class TestPixelPage:
         field2 = pixel_page.get_url_input_field()
         pixel_page.fill_input_field(field2, name)
         pixel_page.click_action_button()
-        assert pixel_page.assert_new_page(r"https://ads\.vk\.com/hq/pixels/\d+/events")
+        assert pixel_page.assert_new_page(PIXEL_PAGE)
 
     def test_fail_url_create_action(self, pixel_page):
         pixel_page.click_link_settings()
