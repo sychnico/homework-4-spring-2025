@@ -5,6 +5,7 @@ import pytest
 BUY_CATEGORY = "Покупка"
 PAGE_VISITED_CONDITION = "Посещена страница"
 EMPTY_FIELD_ERROR = "Нужно заполнить"
+INVALID_DOMAIN = "invalid"
 
 class TestPixelPage:
 
@@ -85,7 +86,7 @@ class TestPixelPage:
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
         pixel_page.clear_input_field(field)
-        pixel_page.fill_input_field(field, "invalid")
+        pixel_page.fill_input_field(field, INVALID_DOMAIN)
         pixel_page.click_submit_button()
         assert pixel_page.get_error_message()
 
