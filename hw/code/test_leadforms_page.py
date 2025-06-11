@@ -1,6 +1,7 @@
 import os
 import time
 from time import sleep
+import pytest
 
 FILEPATH = os.path.join(os.path.dirname(__file__), 'images/leds.jpg')
 CREATE_SURVEY = "Создать опрос"

@@ -1,5 +1,10 @@
 from dataclasses import field
 import time
+import pytest
+
+BUY_CATEGORY = "Покупка"
+PAGE_VISITED_CONDITION = "Посещена страница"
+EMPTY_FIELD_ERROR = "Нужно заполнить"
 
 class TestPixelPage:
 
@@ -105,7 +110,7 @@ class TestPixelPage:
         pixel_page.fill_input_field(field, "")
         pixel_page.click_tag_button()
         error = pixel_page.get_error_message_tag()
-        assert 'Нужно заполнить' in error.text
+        assert EMPTY_FIELD_ERROR in error.text
 
     def test_create_action(self, pixel_page):
         pixel_page.click_link_settings()
@@ -113,8 +118,8 @@ class TestPixelPage:
         field = pixel_page.get_action_input_field()
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
-        pixel_page.select_category("Покупка")
-        pixel_page.select_condition("Посещена страница")
+        pixel_page.select_category(BUY_CATEGORY)
+        pixel_page.select_condition(PAGE_VISITED_CONDITION)
         field2 = pixel_page.get_url_input_field()
         pixel_page.fill_input_field(field2, name)
         pixel_page.click_action_button()
@@ -126,8 +131,8 @@ class TestPixelPage:
         field = pixel_page.get_action_input_field()
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
-        pixel_page.select_category("Покупка")
-        pixel_page.select_condition("Посещена страница")
+        pixel_page.select_category(BUY_CATEGORY)
+        pixel_page.select_condition(PAGE_VISITED_CONDITION)
         field2 = pixel_page.get_url_input_field()
         pixel_page.fill_input_field(field2, "")
         pixel_page.click_action_button()

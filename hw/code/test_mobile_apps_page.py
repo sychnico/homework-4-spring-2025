@@ -1,5 +1,7 @@
 import pytest
 
+INVALID_LINK_ERROR = "Введите корректную ссылку на приложение"
+
 class TestAppsPage:
 
     @pytest.mark.parametrize("app_data", [
@@ -28,5 +30,5 @@ class TestAppsPage:
         mobile_apps_page.fill_input_app_field(field, invalid_app_data["url"])
         mobile_apps_page.click_app_button()
         error = mobile_apps_page.get_error_message()
-        assert error.text == "Введите корректную ссылку на приложение"
+        assert error.text == INVALID_LINK_ERROR
 
