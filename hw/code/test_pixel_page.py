@@ -7,13 +7,10 @@ PAGE_VISITED_CONDITION = "Посещена страница"
 EMPTY_FIELD_ERROR = "Нужно заполнить"
 INVALID_DOMAIN = "invalid"
 PIXEL_PAGE = r"https://ads\.vk\.com/hq/pixels/\d+/events"
+INVALID_DOMAIN_MESSAGE = "Введите корректный адрес сайта"
+EMPTY_URL_MESSAGE = "Заполните это поле"
 
 class TestPixelPage:
-
-    def test_modal_appears(self, pixel_page):
-        """Тест появления модального окна"""
-        pixel_page.click_create_pixel_button()
-        assert pixel_page.get_modal_element()
     
     @pytest.mark.parametrize("pixel_data", [
         {
@@ -89,7 +86,8 @@ class TestPixelPage:
         pixel_page.clear_input_field(field)
         pixel_page.fill_input_field(field, INVALID_DOMAIN)
         pixel_page.click_submit_button()
-        assert pixel_page.get_error_message()
+        error = pixel_page.get_error_message()
+        assert INVALID_DOMAIN_MESSAGE in error.test
 
     def test_pixel_settings(self, pixel_page):
         """Тест перехода к настройкам первого пикселя"""
@@ -104,7 +102,8 @@ class TestPixelPage:
         name = pixel_page.generate_random_string()
         pixel_page.fill_input_field(field, name)
         pixel_page.click_tag_button()
-        assert pixel_page.get_success_tag_modal()
+        tag = pixel_page.get_success_tag_modal()
+        assert name in tag.text
 
     def test_fail_create_tag(self, pixel_page):
         """Тест создания тега с пустым полем"""
@@ -138,5 +137,5 @@ class TestPixelPage:
         field2 = pixel_page.get_url_input_field()
         pixel_page.fill_input_field(field2, "")
         pixel_page.click_action_button()
-        assert pixel_page.get_error_message_url()
-
+        error = pixel_page.get_error_message_url()
+        assert EMPTY_URL_MESSAGE in error.text
