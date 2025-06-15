@@ -20,8 +20,8 @@ class BalancePage(Page):
     def find_pay_null_error(self):
         return self.find(self.locators.ERROR_PAY_NULL_VALUE)
     
-    def find_pay_wrong_error(self):
-        return self.find(self.locators.ERROR_PAY_WRONG_VALUE)
+    def find_pay_wrong_error(self, min_price):
+        return self.find(self.locators.ERROR_PAY_WRONG_VALUE(min_price), timeout=5)
     
     def set_amound_input(self, price):
         amound_input = self.find(self.locators.AMOUNT_INPUT)

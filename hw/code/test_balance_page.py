@@ -9,6 +9,7 @@ NULL_ERROR_OPLATA = 'Нужно заполнить'
 PROMO_INFO_OPLATA = 'Персональные акции'
 NULL_ERROR_PROMO = 'Укажите промокод'
 WRONG_ERROR_PROMO = 'Неверный промокод'
+MIN_PRICE = 600
 
 class TestBalancePage:
     def go_to_pay(self, balance_page):
@@ -35,7 +36,7 @@ class TestBalancePage:
         self.go_to_pay(balance_page=balance_page)
         balance_page.set_amound_input(amount)
         balance_page.click_pay_balance()
-        error = balance_page.find_pay_wrong_error()
+        error = balance_page.find_pay_wrong_error(MIN_PRICE)
         assert error.text == expected_error
 
     @pytest.mark.parametrize("amount", RIGHT_PAY_VALUE)

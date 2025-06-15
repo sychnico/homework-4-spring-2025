@@ -2,7 +2,7 @@ class CampaignConstants:
     URL = 'https://ads.vk.com/hq/dashboard/ad_plans'
     SITE_URL = 'https://education.vk.company/'
     URL_TEXT = 'education.vk.company'
-
+    TITLE = 'Заголовок'
     class Tabs:
         TARGET = ['Сайт', 'Каталог товаров', 'Мобильное приложение', 'Сообщество и профиль',
                  'Группа и профиль ОК', 'Дзен', 'Лид-формы и опросы', 'VK Mini Apps и игры', 'Музыка',

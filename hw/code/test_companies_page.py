@@ -77,13 +77,21 @@ class TestCampaignPage():
         campaign_page.click_submit_button()
         campaign_page.click_publish_button()
         campaign_page.driver.get("https://ads.vk.com/hq/dashboard/ad_plans")
-        assert campaign_page.became_visible(campaign_page.locators.ENTITY_NAME_CELL(campaign_data['name'])), f"Кампания с именем {campaign_data['name']} не найдена"
+        flag_camp_name = campaign_page.check_visible_name(campaign_data['name'])
+        assert flag_camp_name, f"Компания с именем {campaign_data['name']} не найдена"
         campaign_page.click_group_tabs(const.Tabs.CAMPAIGN)
-        assert campaign_page.became_visible(campaign_page.locators.ENTITY_NAME_CELL(campaign_data['group'])), f"Группа с именем {campaign_data['group']} не найдена"
+        flag_group_name = campaign_page.check_visible_name(campaign_data['group'])
+        assert flag_group_name, f"Группа с именем {campaign_data['group']} не найдена"
         campaign_page.click_ad_tab(const.Tabs.CAMPAIGN)
-        assert campaign_page.became_visible(campaign_page.locators.ENTITY_NAME_CELL(campaign_data['ad'])), f"Объявление с именем {campaign_data['ad']} не найдено"
-        assert campaign_page.became_visible(campaign_page.locators.SIDEBAR_AD_INPUT('Заголовок', campaign_data['title'])), "Заголовок объявления не соответствует ожидаемому"
-        assert campaign_page.find(campaign_page.locators.SHORT_DESCRIPTION_TEXT).text == campaign_data['short_desc'], "Блок с коротким описанием не соответствует ожидаемому"
-        assert campaign_page.find(campaign_page.locators.LONG_DESCRIPTION_TEXT).text == campaign_data['long_desc'], "Блок с длинным описанием не соответствует ожидаемому"
-        
-        
+        flag_ad_name = campaign_page.check_visible_name(campaign_data['ad'])
+        assert flag_ad_name, f"Объявление с именем {campaign_data['ad']} не найдено"
+        flag_title = campaign_page.check_visible_title(const.TITLE, campaign_data['title'])
+        assert flag_title, "Заголовок объявления не соответствует ожидаемому"
+        short_description = campaign_page.get_short_description()
+        assert short_description == campaign_data['short_desc'], "Блок с коротким описанием не соответствует ожидаемому"
+        long_description = campaign_page.get_long_description()
+        assert long_description == campaign_data['long_desc'], "Блок с длинным описанием не соответствует ожидаемому"
+
+
+
+
