@@ -17,11 +17,13 @@ class Page(object):
         self.is_open()
 
     def is_open(self, timeout=5):
-        started = time.time()
-        while time.time() - started < timeout:
-            if self.driver.current_url == self.URL:
-                return True
-        raise TimeoutException
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                lambda d: d.current_url == self.URL
+            )
+            return True
+        except TimeoutException:
+            return False
 
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(expected_conditions.presence_of_element_located(locator))

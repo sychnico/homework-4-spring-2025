@@ -9,7 +9,8 @@ class BalanceLocators:
     MODAL_CLOSE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalDismissButton')]")
     TOP_UP_BALANCE_BUTTON = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_button__')]")
     ERROR_PAY_NULL_VALUE  = (By.XPATH, "//*[text()='Нужно заполнить']")
-    ERROR_PAY_WRONG_VALUE  = (By.XPATH, "//*[text()='Минимальная сумма 600,00 ₽ ']")
+    def ERROR_PAY_WRONG_VALUE(price):
+        return (By.XPATH, f"//*[text()='Минимальная сумма {price},00 ₽ ']")
     BONUS_PROGRAM_TAB = (By.XPATH, "//div[contains(@tabindex, '-1') and contains(@class, 'vkuiTabsItem')]")
     ACTIVATE_PROMOCODE = (By.XPATH, "//button[contains(@class, 'CouponBanner_button__')]")
     ACTVATE = (By.XPATH, "//*[text()='Активировать']")

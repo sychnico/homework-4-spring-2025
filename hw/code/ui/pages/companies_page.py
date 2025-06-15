@@ -6,6 +6,18 @@ class CompaniesPage(Page):
     URL = const.URL
     locators = CampaignPageLocators()
 
+    def check_visible_name(self, name):
+        return self.became_visible(self.locators.ENTITY_NAME_CELL(name))
+
+    def check_visible_title(self, title_in_page, compare_title):
+        return self.became_visible(self.locators.SIDEBAR_AD_INPUT(title_in_page, compare_title))
+
+    def get_short_description(self):
+        return self.find(self.locators.SHORT_DESCRIPTION_TEXT).text
+
+    def get_long_description(self):
+        return self.find(self.locators.LONG_DESCRIPTION_TEXT).text
+
     def click_continue_button(self):
         self.click(self.locators.CREATE_FOOTER_CONTINUE, timeout=4)
 
