@@ -10,8 +10,36 @@ PIXEL_PAGE = r"https://ads\.vk\.com/hq/pixels/\d+/events"
 INVALID_DOMAIN_MESSAGE = "Введите корректный адрес сайта"
 EMPTY_URL_MESSAGE = "Заполните это поле"
 
-class TestPixelPage:
+@pytest.fixture
+def create_pixel(pixel_page):
+    pixel_page.click_create_pixel_button()
+    field = pixel_page.get_domain_input_field()
+    pixel_page.clear_input_field(field)
+    name = "test-pixel-na.me"
+    pixel_page.fill_input_field(field, name)
+    pixel_page.click_submit_button()
+    test_pixel = pixel_page.find_test_pixel(name)
+    assert test_pixel.text == name
+    return name
+
+@pytest.fixture
+def auto_clean_pixel(pixel_page):
+    pixels_created = []
     
+    yield pixels_created
+
+    for name in pixels_created:
+        try:
+            pixel_page.hover_pixel()
+            pixel_page.click_more()
+            pixel_page.click_delete_pixel()
+            pixel_page.click_delete_button()
+            assert pixel_page.check_pixel_deleted(name)
+        except:
+            pass
+
+class TestPixelPage:
+
     @pytest.mark.parametrize("pixel_data", [
         {
             "url": "giga-mail.ru"
@@ -23,12 +51,13 @@ class TestPixelPage:
             "url": "new-test-na.me"
         }
     ])
-    def test_successful_pixel_creation(self, pixel_page, pixel_data):
+    def test_successful_pixel_creation(self, pixel_page, pixel_data, auto_clean_pixel):
         """Тест успешного создания пикселя"""
         pixel_page.click_create_pixel_button()
         field = pixel_page.get_domain_input_field()
         pixel_page.clear_input_field(field)
         name = pixel_data["url"]
+        auto_clean_pixel.append(name)
         pixel_page.fill_input_field(field, name)
         pixel_page.click_submit_button()
         test_pixel = pixel_page.find_test_pixel(name)
@@ -45,8 +74,9 @@ class TestPixelPage:
             "url": "new-test-na.me"
         }
     ])
-    def test_pixel_change(self, pixel_page, pixel_data):
+    def test_pixel_change(self, pixel_page, pixel_data, create_pixel):
         """Тест изменения пикселя"""
+        name = create_pixel
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_rename_pixel()
@@ -69,9 +99,9 @@ class TestPixelPage:
             "url": "new-test-na.me"
         }
     ])
-    def test_delete_pixel(self, pixel_page, pixel_data):
+    def test_delete_pixel(self, pixel_page, pixel_data, create_pixel):
         """Тест удаления пикселя"""
-        name = pixel_data["url"]
+        name = create_pixel
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
@@ -87,7 +117,7 @@ class TestPixelPage:
         pixel_page.fill_input_field(field, INVALID_DOMAIN)
         pixel_page.click_submit_button()
         error = pixel_page.get_error_message()
-        assert INVALID_DOMAIN_MESSAGE in error.test
+        assert INVALID_DOMAIN_MESSAGE in error.text
 
     def test_pixel_settings(self, pixel_page):
         """Тест перехода к настройкам первого пикселя"""
