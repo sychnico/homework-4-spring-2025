@@ -26,6 +26,9 @@ class PixelPage(Page):
     def find_test_pixel(self, str):
         return self.find(self.locators.test_pixel_name(str))
 
+    def find_pixels(self):
+        return self.find_multiple(self.locators.FIRST_PIXEL)
+
     def check_pixel_deleted(self, str):
         return self.became_invisible(self.locators.test_pixel_name(str))
 
@@ -173,3 +176,6 @@ class PixelPage(Page):
         return self.wait(timeout).until(
             expected_conditions.presence_of_element_located(locator)
         )
+
+    def get_current_url(self):
+        return self.url()

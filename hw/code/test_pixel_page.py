@@ -18,7 +18,6 @@ def create_pixel(pixel_page):
     name = "test-pixel-na.me"
     pixel_page.fill_input_field(field, name)
     pixel_page.click_submit_button()
-    test_pixel = pixel_page.find_test_pixel(name)
     return name
 
 @pytest.fixture
@@ -52,11 +51,11 @@ class TestPixelPage:
         field = pixel_page.get_domain_input_field()
         pixel_page.clear_input_field(field)
         name = pixel_data["url"]
-        auto_clean_pixel.append(name)
         pixel_page.fill_input_field(field, name)
         pixel_page.click_submit_button()
         test_pixel = pixel_page.find_test_pixel(name)
         assert test_pixel.text == name
+        auto_clean_pixel.append(name)
 
     @pytest.mark.parametrize("pixel_data", [
         {
@@ -78,11 +77,11 @@ class TestPixelPage:
         field = pixel_page.get_pixel_input_field()
         pixel_page.clear_input_field(field)
         name = pixel_data["url"]
-        auto_clean_pixel.append(name)
         pixel_page.fill_input_field(field, name)
         pixel_page.click_change_button()
         test_pixel = pixel_page.find_test_pixel(name)
         assert test_pixel.text == name
+        auto_clean_pixel.append(name)
     
     @pytest.mark.parametrize("pixel_data", [
         {
@@ -102,7 +101,9 @@ class TestPixelPage:
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
         pixel_page.click_delete_button()
-        assert pixel_page.check_pixel_deleted(name)
+        pixels = pixel_page.find_pixels()
+        for p in pixels:
+            assert p.text != name
     
 
     def test_invalid_domain(self, pixel_page):
@@ -118,7 +119,8 @@ class TestPixelPage:
     def test_pixel_settings(self, pixel_page):
         """Тест перехода к настройкам первого пикселя"""
         pixel_page.click_link_settings()
-        assert pixel_page.assert_new_page(PIXEL_PAGE)
+        url = pixel_page.get_current_url()
+        assert url == PIXEL_PAGE
 
     def test_create_tag(self, pixel_page):
         pixel_page.click_link_settings()
@@ -134,6 +136,9 @@ class TestPixelPage:
     def test_fail_create_tag(self, pixel_page):
         """Тест создания тега с пустым полем"""
         pixel_page.click_link_settings()
+        pixel_page.switch_to_new_page_tag()
+        pixel_page.click_create_tag_button()
+        field = pixel_page.get_tag_input_field()
         pixel_page.fill_input_field(field, "")
         pixel_page.click_tag_button()
         error = pixel_page.get_error_message_tag()
@@ -150,7 +155,8 @@ class TestPixelPage:
         field2 = pixel_page.get_url_input_field()
         pixel_page.fill_input_field(field2, name)
         pixel_page.click_action_button()
-        assert pixel_page.assert_new_page(PIXEL_PAGE)
+        url = pixel_page.get_current_url()
+        assert url == PIXEL_PAGE
 
     def test_fail_url_create_action(self, pixel_page):
         pixel_page.click_link_settings()

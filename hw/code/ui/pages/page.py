@@ -84,5 +84,7 @@ class Page(object):
             return True
         except TimeoutException:
             return False
-   
+    
+    def url(self):
+        return self.driver.current_url
 
