@@ -130,7 +130,7 @@ class PixelPage(Page):
         
     def click_more(self):
         """Клик по кнопке подробнее"""
-        self.click(self.locators.MORE_BUTTON)
+        self.click(self.locators.MORE_BUTTON, timeout=5)
 
     def click_rename(self):
         """Клик по кнопке Переименовать"""

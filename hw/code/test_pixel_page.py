@@ -9,8 +9,19 @@ INVALID_DOMAIN = "invalid"
 PIXEL_PAGE = r"https://ads\.vk\.com/hq/pixels/\d+/events"
 INVALID_DOMAIN_MESSAGE = "Введите корректный адрес сайта"
 EMPTY_URL_MESSAGE = "Заполните это поле"
+TEST_DATA = [
+    {
+        "url": "agiga-mail.ru"
+    },
+    {
+        "url": "alirili-lari.la"
+    },
+    {
+        "url": "anew-test-na.me"
+    }
+]
 
-@pytest.fixture
+@pytest.fixture(autouse=False)
 def create_pixel(pixel_page):
     pixel_page.click_create_pixel_button()
     field = pixel_page.get_domain_input_field()
@@ -20,7 +31,7 @@ def create_pixel(pixel_page):
     pixel_page.click_submit_button()
     return name
 
-@pytest.fixture
+@pytest.fixture(autouse=False)
 def auto_clean_pixel(pixel_page):
     pixels_created = []
     
@@ -34,17 +45,7 @@ def auto_clean_pixel(pixel_page):
 
 class TestPixelPage:
 
-    @pytest.mark.parametrize("pixel_data", [
-        {
-            "url": "giga-mail.ru"
-        },
-        {
-            "url": "lirili-lari.la"
-        },
-        {
-            "url": "new-test-na.me"
-        }
-    ])
+    @pytest.mark.parametrize("pixel_data", TEST_DATA)
     def test_successful_pixel_creation(self, pixel_page, pixel_data, auto_clean_pixel):
         """Тест успешного создания пикселя"""
         pixel_page.click_create_pixel_button()
@@ -57,17 +58,7 @@ class TestPixelPage:
         assert test_pixel.text == name
         auto_clean_pixel.append(name)
 
-    @pytest.mark.parametrize("pixel_data", [
-        {
-            "url": "giga-mail.ru"
-        },
-        {
-            "url": "lirili-lari.la"
-        },
-        {
-            "url": "new-test-na.me"
-        }
-    ])
+    @pytest.mark.parametrize("pixel_data", TEST_DATA)
     def test_pixel_change(self, pixel_page, pixel_data, create_pixel, auto_clean_pixel):
         """Тест изменения пикселя"""
         name = create_pixel
@@ -83,20 +74,11 @@ class TestPixelPage:
         assert test_pixel.text == name
         auto_clean_pixel.append(name)
     
-    @pytest.mark.parametrize("pixel_data", [
-        {
-            "url": "giga-mail.ru"
-        },
-        {
-            "url": "lirili-lari.la"
-        },
-        {
-            "url": "new-test-na.me"
-        }
-    ])
+    @pytest.mark.parametrize("pixel_data", TEST_DATA)
     def test_delete_pixel(self, pixel_page, pixel_data, create_pixel):
         """Тест удаления пикселя"""
         name = create_pixel
+        name = pixel_data["url"]
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
