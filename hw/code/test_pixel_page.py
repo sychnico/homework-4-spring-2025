@@ -78,7 +78,6 @@ class TestPixelPage:
     def test_delete_pixel(self, pixel_page, pixel_data, create_pixel):
         """Тест удаления пикселя"""
         name = create_pixel
-        name = pixel_data["url"]
         pixel_page.hover_pixel()
         pixel_page.click_more()
         pixel_page.click_delete_pixel()
