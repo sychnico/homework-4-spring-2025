@@ -4,9 +4,7 @@ from ui.pages.audience_page import AudiencePage
 from ui.pages.balance_page import BalancePage
 from ui.pages.cases_page import CasesPage
 from ui.pages.companies_page import CompaniesPage
-from ui.pages.documents_page import DocumentsPage
 from ui.pages.ecomm_page import EcommPage
-from ui.pages.events_page import EventsPage
 from ui.pages.insights_page import InsightsPage
 from ui.pages.leadforms_page import LeadformsPage
 from ui.pages.main_page import MainPage
@@ -53,11 +51,6 @@ def campaign_page(driver):
     return CompaniesPage(driver=driver)
 
 @pytest.fixture
-def documents_page(driver):
-    driver.get(DocumentsPage.URL)
-    return DocumentsPage(driver=driver)
-
-@pytest.fixture
 def insights_page(driver):
     driver.get(InsightsPage.URL)
     return InsightsPage(driver=driver)
@@ -66,11 +59,6 @@ def insights_page(driver):
 def ecomm_page(driver):
     driver.get(EcommPage.URL)
     return EcommPage(driver=driver)
-
-@pytest.fixture
-def events_page(driver):
-    driver.get(EventsPage.URL)
-    return EventsPage(driver=driver)
 
 @pytest.fixture
 def leadforms_page(driver):

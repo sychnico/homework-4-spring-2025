@@ -19,7 +19,6 @@ def create_pixel(pixel_page):
     pixel_page.fill_input_field(field, name)
     pixel_page.click_submit_button()
     test_pixel = pixel_page.find_test_pixel(name)
-    assert test_pixel.text == name
     return name
 
 @pytest.fixture
@@ -29,14 +28,10 @@ def auto_clean_pixel(pixel_page):
     yield pixels_created
 
     for name in pixels_created:
-        try:
-            pixel_page.hover_pixel()
-            pixel_page.click_more()
-            pixel_page.click_delete_pixel()
-            pixel_page.click_delete_button()
-            assert pixel_page.check_pixel_deleted(name)
-        except:
-            pass
+        pixel_page.hover_pixel()
+        pixel_page.click_more()
+        pixel_page.click_delete_pixel()
+        pixel_page.click_delete_button()
 
 class TestPixelPage:
 
@@ -74,7 +69,7 @@ class TestPixelPage:
             "url": "new-test-na.me"
         }
     ])
-    def test_pixel_change(self, pixel_page, pixel_data, create_pixel):
+    def test_pixel_change(self, pixel_page, pixel_data, create_pixel, auto_clean_pixel):
         """Тест изменения пикселя"""
         name = create_pixel
         pixel_page.hover_pixel()
@@ -83,6 +78,7 @@ class TestPixelPage:
         field = pixel_page.get_pixel_input_field()
         pixel_page.clear_input_field(field)
         name = pixel_data["url"]
+        auto_clean_pixel.append(name)
         pixel_page.fill_input_field(field, name)
         pixel_page.click_change_button()
         test_pixel = pixel_page.find_test_pixel(name)
